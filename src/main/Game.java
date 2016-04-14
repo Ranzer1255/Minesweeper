@@ -1,3 +1,4 @@
+package main;
 import minesweeper.*;
 import userinterface.*;
 

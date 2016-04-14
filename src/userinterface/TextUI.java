@@ -20,6 +20,7 @@ public class TextUI {
 	public TextUI(InputStream in, PrintStream out) {
 		this.in=in;
 		this.out=out;
+		System.console().
 	}
 
 	public void printFullLine(char c) {
