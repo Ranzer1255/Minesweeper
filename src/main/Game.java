@@ -66,12 +66,19 @@ public class Game {
 	}
 	
 	private static void displayGoodbye() {
-		// TODO Auto-generated method stub
+		ui.printFullLine('*');
+		ui.wrappedPrint('*', null);
+		ui.wrappedPrint('*', "Thanks");
+		ui.wrappedPrint('*', "for playing");
+		ui.wrappedPrint('*', "Minesweeper for Command Line!");
+		ui.wrappedPrint('*', null);
+		ui.printFullLine('*');
 		
 	}
 
 	private static void playAgain() {
-		// TODO Auto-generated method stub
+		ui.centerPrint("Play again?");
+		
 		
 	}
 
