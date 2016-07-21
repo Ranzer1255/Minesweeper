@@ -47,8 +47,37 @@ public class TextUI {
 		out.println();
 	}
 
-	public void wrappedPrint(char c, Object object) {
-		// TODO Auto-generated method stub
+	public void wrappedPrint(char c, String text) {
+
+		String print = "";
+		int whitespace = CONSOLESIZE/2-text.length()/2-1;
+		
+		print += c;
+		print += addWhitespace(whitespace);
+		print += text;
+		print += addWhitespace(whitespace);
+		print += c;
+		
+		out.println(print);
+	}
+	
+	private String addWhitespace(int whitespace){
+		String rtn="";
+		for(int i=0;i<whitespace;i++){
+			rtn += " ";
+		}
+		return rtn;
+	}
+
+	public void centerPrint(String string) {
+
+		String print = "";
+		int whitespace = CONSOLESIZE/2-string.length()/2;
+		
+		print += addWhitespace(whitespace);
+		print +=string;
+		
+		out.println(print);
 		
 	}
 

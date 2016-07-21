@@ -31,10 +31,10 @@ public class Game {
 					String msg =  e.getMessage();
 					if (msg == "mine"){
 						displayGameOver(Minesweeper.LOSE);
-						playAgain();
+//						playAgain();
 					}else if (msg == "win"){
 						displayGameOver(Minesweeper.WIN);
-						playAgain();
+//						playAgain();
 					}else if (msg == "quit"){
 						displayGoodbye();
 						playing = false;
@@ -53,11 +53,11 @@ public class Game {
 	private static void displayWelcome() {
 		
 		ui.printFullLine('*');
-		ui.wrappedPrint('*',null);
-		ui.wrappedPrint('*', "Welcome to Minesweeper for Command Line!");
-		ui.wrappedPrint('*', "By");
-		ui.wrappedPrint('*', "Bobby Dillingham");
-		ui.wrappedPrint('*', null);
+		ui.wrappedPrint('|',"");
+		ui.wrappedPrint('|', "Welcome to Minesweeper for Command Line!");
+		ui.wrappedPrint('|', "By");
+		ui.wrappedPrint('|', "Bobby Dillingham");
+		ui.wrappedPrint('|', "");
 		ui.printFullLine('*');
 		
 		
@@ -67,11 +67,11 @@ public class Game {
 	
 	private static void displayGoodbye() {
 		ui.printFullLine('*');
-		ui.wrappedPrint('*', null);
+		ui.wrappedPrint('*', "");
 		ui.wrappedPrint('*', "Thanks");
 		ui.wrappedPrint('*', "for playing");
 		ui.wrappedPrint('*', "Minesweeper for Command Line!");
-		ui.wrappedPrint('*', null);
+		ui.wrappedPrint('*', "");
 		ui.printFullLine('*');
 		
 	}
