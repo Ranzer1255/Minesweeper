@@ -31,10 +31,10 @@ public class Game {
 					String msg =  e.getMessage();
 					if (msg == "mine"){
 						displayGameOver(Minesweeper.LOSE);
-//						playAgain();
+						playAgain();
 					}else if (msg == "win"){
 						displayGameOver(Minesweeper.WIN);
-//						playAgain();
+						playAgain();
 					}else if (msg == "quit"){
 						displayGoodbye();
 						playing = false;
