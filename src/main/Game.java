@@ -13,7 +13,7 @@ public class Game {
 	 */
 	public static void main(String[] args) {
 
-		game  = new Minesweeper();
+//		game  = new Minesweeper(); //this needs to be moved
 		ui = new TextUI(System.in, System.out);
 		
 		displayWelcome();
