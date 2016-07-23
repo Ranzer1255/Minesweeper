@@ -8,17 +8,19 @@ package minesweeper;
  *
  */
 public class Minesweeper {
+	
+	Field pf;
+	
+	
+	public Minesweeper(int x, int y, int numMines){
 
-	public static final int LOSE = 0;
-	public static final int WIN = 1;
-	
-	//size of play field
-	private int x;
-	private int y;
-	private int numMines;	
-	
-	public Minesweeper(){
+		pf = new Field(x,y,numMines);
 		
 	}
+	
+	
 
+	private enum gameState{
+		WIN, LOSE;
+	}
 }
