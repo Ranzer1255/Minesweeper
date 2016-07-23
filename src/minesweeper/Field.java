@@ -27,9 +27,9 @@ public class Field {
 
 	private void instanciateCellArray(int x, int y) {
 		field=new Cell[x][y];
-		for (int i1 = 0; i1 < x; i1++) {
-			for (int j1 = 0; j1 < y; j1++) {
-				field[i1][j1] = new Cell();
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < y; j++) {
+				field[i][j] = new Cell();
 			}
 		}
 	}
@@ -47,10 +47,6 @@ public class Field {
 				field[randX][randY] = new Cell(CellType.MINE);
 			}
 		}
-	}
-
-	private Cell getRandomCell() {
-		return this.getCell(randomInt(this.sizeX+1), randomInt(this.sizeY+1));
 	}
 
 	private int randomInt(int i) {
