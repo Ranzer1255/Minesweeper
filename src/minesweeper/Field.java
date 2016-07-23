@@ -1,12 +1,10 @@
 package minesweeper;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Field {
 
-	
 	private Cell[][] field;
 	private int sizeX,sizeY,mines;
 	
@@ -20,8 +18,7 @@ public class Field {
 		
 	}
 
-	public Cell getCell(int x, int y) {
-		
+	public Cell getCell(int x, int y) {		
 		return field[x][y];
 	}
 
@@ -74,47 +71,47 @@ public class Field {
 	private ArrayList<Cell> getNeighborsOfCell(int x, int y) {
 		ArrayList<Cell> rtn = new ArrayList<Cell>();
 		
-		if((x==0&&y==0)){
+		if((x==0&&y==0)){ 				//Northwest corner
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y+1));
-		} else if (x==0&&y==sizeY){
+		} else if (x==0&&y==sizeY){		//Northeast corner
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y-1));
-		} else if (x==sizeX&&y==0){
+		} else if (x==sizeX&&y==0){		//Southwest corner
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y+1));
-		} else if (x==sizeX&&y==sizeY){
+		} else if (x==sizeX&&y==sizeY){	//Southeast corner
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y-1));
-		} else if (x==0){
+		} else if (x==0){				//North edge
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y-1));
 			rtn.add(getCell(x+1, y+1));
-		} else if (x==sizeX){
+		} else if (x==sizeX){			//South edge
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y-1));
 			rtn.add(getCell(x-1, y+1));
-		} else if (y==0) {
+		} else if (y==0) {				//West edge
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y+1));
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y+1));
-		} else if (y==sizeY){
+		} else if (y==sizeY){			//East edge
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y-1));
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y-1));
-		} else {
+		} else {						//middle
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y-1));
 			rtn.add(getCell(x-1, y+1));

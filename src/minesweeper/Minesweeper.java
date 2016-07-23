@@ -1,7 +1,4 @@
 package minesweeper;
-/**
- * 
- */
 
 /**
  * @author Bobby Dillingham
