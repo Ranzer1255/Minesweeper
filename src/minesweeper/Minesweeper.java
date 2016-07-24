@@ -6,18 +6,17 @@ package minesweeper;
  */
 public class Minesweeper {
 	
-	Field pf;
-	
+
 	
 	public Minesweeper(int x, int y, int numMines){
 
-		pf = new Field(x,y,numMines);
+//		pf = new Field(x,y,numMines);
 		
 	}
 	
 	
 
-	private enum gameState{
+	public enum gameState{
 		WIN, LOSE;
 	}
 }
