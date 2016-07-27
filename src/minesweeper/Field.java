@@ -34,15 +34,11 @@ public class Field {
 	private void setMines() {
 		for (int i = 0; i < this.mines; i++) {
 			//get random cell
-			int randX = randomInt(sizeX+1), randY = randomInt(sizeY+1);
-			
-			if (getCell(randX, randY).isMine()){
-				while(getCell(randX, randY).isMine()){
-					randX = randomInt(sizeX+1); randY = randomInt(sizeY+1);
-				}
-			} else {
-				field[randX][randY] = new Cell(CellType.MINE);
-			}
+			int randX, randY;
+			do {
+				randX = randomInt(sizeX+1); randY = randomInt(sizeY+1);
+			}while(getCell(randX, randY).isMine());
+			field[randX][randY] = new Cell(CellType.MINE);
 		}
 	}
 
