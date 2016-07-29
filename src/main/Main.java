@@ -66,8 +66,8 @@ public class Main {
 	private static void getSettings() {
 
 		int x,y,mine;
-		x = ui.nextBountedInt("How wide?", 1,ui.getConsoleSize()-2);
-		y = ui.nextBountedInt("How tall?", 1,ui.getConsoleSize()-2);
+		x = ui.nextBountedInt("How wide?", 1,Minesweeper.MAXSIZE);
+		y = ui.nextBountedInt("How tall?", 1,Minesweeper.MAXSIZE);
 		mine = ui.nextBountedInt("How Many Mines?", 1,(x*y-1));
 		
 		game = new Minesweeper(x, y, mine);
@@ -76,8 +76,8 @@ public class Main {
 
 
 	private static void displayGrid() {
-		// TODO Auto-generated method stub
-		
+
+		game.printGrid();
 	}
 
 	private static void makeMove() throws MinesweeperException {
