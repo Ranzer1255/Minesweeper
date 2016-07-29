@@ -1,6 +1,4 @@
-package main;
-
-import minesweeper.exeptions.MinesweeperException;
+package minesweeper.exeptions;
 
 @SuppressWarnings("serial")
 public class MineRevealedException extends MinesweeperException {

@@ -1,5 +1,6 @@
 package main;
 import minesweeper.Minesweeper;
+import minesweeper.exeptions.MineRevealedException;
 import minesweeper.exeptions.MinesweeperException;
 import minesweeper.exeptions.QuitGameException;
 import userinterface.TextUI;
@@ -40,14 +41,7 @@ public class Main {
 					displayGameOver(Minesweeper.gameState.LOSE);
 					playAgain();
 				}catch(MinesweeperException e){
-					gameOver = true;
-					String msg =  e.getMessage();
-					if (msg == "mine"){
-
-					}else if (msg == "win"){
-						displayGameOver(Minesweeper.gameState.WIN);
-						playAgain();
-					}
+					e.printStackTrace();
 				}
 			}
 		}
@@ -63,10 +57,6 @@ public class Main {
 		ui.wrappedPrint('|', "Bobby Dillingham");
 		ui.wrappedPrint('|', "");
 		ui.printFullLine('*');
-		
-		
-		
-		
 	}
 
 	private static void getSettings() {
@@ -87,7 +77,6 @@ public class Main {
 	}
 
 	private static void makeMove() throws MinesweeperException {
-		
 		
 		
 	}
@@ -111,14 +100,10 @@ public class Main {
 				} else {
 					throw new IllegalArgumentException();
 				}
-
 			} catch (IllegalArgumentException e) {
 				ui.centerPrint("I'm sorry, I didn't understand that. Please try again.");
 			} 
 		} while (illegalArgument);
-		
-		
-		
 	}
 
 	private static void quitGame() {
