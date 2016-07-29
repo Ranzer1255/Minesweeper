@@ -26,7 +26,7 @@ public class Field {
 		field=new Cell[x][y];
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
-				field[i][j] = new Cell();
+				field[i][j] = new Clue();
 			}
 		}
 	}
@@ -38,7 +38,7 @@ public class Field {
 			do {
 				randX = randomInt(sizeX+1); randY = randomInt(sizeY+1);
 			}while(getCell(randX, randY).isMine());
-			field[randX][randY] = new Cell(CellType.MINE);
+			field[randX][randY] = new Mine();
 		}
 	}
 
@@ -58,7 +58,7 @@ public class Field {
 							count++;
 						}
 					}
-					field[i][j] = new Cell(CellType.CLUE, count);
+					field[i][j] = new Clue(count);
 				}
 			}
 		}
@@ -118,5 +118,29 @@ public class Field {
 			rtn.add(getCell(x+1, y+1));
 		}
 		return rtn;
+	}
+
+	public StringBuilder toGridString() {
+		StringBuilder rtn=new StringBuilder((sizeX+3)*(sizeY+2));
+		
+		//top border
+		rtn.append('*');
+		for (int i = 0; i < sizeX; i++) {
+			rtn.append('-');
+		}
+		rtn.append('*');
+		rtn.append("\n");
+		
+		//Grid
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field[i].length; j++) {
+				rtn.append(getCell(i, j).getSymbol(););
+			}
+			
+		}
+		
+		//bottom border
+		
+		return null;
 	}
 }
