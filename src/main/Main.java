@@ -78,7 +78,7 @@ public class Main {
 
 	private static void displayGrid() {
 
-		game.printGrid();
+		ui.print(game.printGrid());
 	}
 
 	private static void makeMove() throws MinesweeperException {

@@ -105,4 +105,10 @@ public class TextUI {
 		return rtn;
 	}
 
+	public void print(StringBuilder printGrid) {
+
+		out.print(printGrid);
+		
+	}
+
 }
