@@ -51,9 +51,9 @@ public class Field {
 			for (int j = 0; j < sizeY; j++) {
 				
 				if(!getCell(i,j).isMine()){
-					ArrayList<Cell> nighbors = getNeighborsOfCell(i, j);
+					ArrayList<Cell> neighbors = getNeighborsOfCell(i, j);
 					int count=0;
-					for (Cell c : nighbors) {
+					for (Cell c : neighbors) {
 						if (c.isMine()) {
 							count++;
 						}
