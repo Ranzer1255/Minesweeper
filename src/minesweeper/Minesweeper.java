@@ -6,11 +6,14 @@ package minesweeper;
  */
 public class Minesweeper {
 	
+	public static final int MAXSIZE = 26;
+	
+	private Field mineField;
 
 	
 	public Minesweeper(int x, int y, int numMines){
 
-//		pf = new Field(x,y,numMines);
+		mineField = new Field(x,y,numMines);
 		
 	}
 	
@@ -18,5 +21,12 @@ public class Minesweeper {
 
 	public enum gameState{
 		WIN, LOSE;
+	}
+
+
+
+	public StringBuilder printGrid() {
+		
+		return mineField.toGridString();
 	}
 }

@@ -121,26 +121,51 @@ public class Field {
 	}
 
 	public StringBuilder toGridString() {
-		StringBuilder rtn=new StringBuilder((sizeX+3)*(sizeY+2));
+		StringBuilder rtn=new StringBuilder();
+		
+		//top ruller
+		
+		rtn.append('*');
+		rtn.append('|');
+		for (int i = 0; i < sizeX; i++) {
+			rtn.append((char)('a'+i));
+		}
+		rtn.append('|');
+		rtn.append('*');
+		rtn.append('\n');
+		
 		
 		//top border
-		rtn.append('*');
+		rtn.append('-');
+		rtn.append('|');
 		for (int i = 0; i < sizeX; i++) {
 			rtn.append('-');
 		}
-		rtn.append('*');
+		rtn.append('|');
+		rtn.append('-');
 		rtn.append("\n");
 		
 		//Grid
 		for (int i = 0; i < field.length; i++) {
-			for (int j = 0; j < field[i].length; j++) {
-				rtn.append(getCell(i, j).getSymbol(););
-			}
 			
+			rtn.append((char)('a'+i));
+			rtn.append('|');
+			for (int j = 0; j < field[i].length; j++) {
+				rtn.append(getCell(i, j).getChar());
+			}
+			rtn.append("| \n");
 		}
 		
 		//bottom border
+		rtn.append('-');
+		rtn.append('|');
+		for (int i = 0; i < sizeX; i++) {
+			rtn.append('-');
+		}
+		rtn.append('|');
+		rtn.append('-');
+		rtn.append("\n");
 		
-		return null;
+		return rtn;
 	}
 }
