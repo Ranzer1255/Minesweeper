@@ -1,5 +1,6 @@
 package main;
 import minesweeper.*;
+import minesweeper.exeptions.MinesweeperException;
 import userinterface.*;
 
 public class Main {

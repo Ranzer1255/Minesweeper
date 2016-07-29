@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.exeptions;
 
 @SuppressWarnings("serial")
 public class QuitGameException extends MinesweeperException {
