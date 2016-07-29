@@ -1,7 +1,7 @@
 package main;
-import minesweeper.*;
+import minesweeper.Minesweeper;
 import minesweeper.exeptions.MinesweeperException;
-import userinterface.*;
+import userinterface.TextUI;
 
 public class Main {
 	
