@@ -2,7 +2,7 @@ package main;
 import minesweeper.*;
 import userinterface.*;
 
-public class Game {
+public class Main {
 	
 	private static boolean gameOver;
 	private static boolean playing;
