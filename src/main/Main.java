@@ -1,6 +1,7 @@
 package main;
 import minesweeper.Minesweeper;
 import minesweeper.exeptions.MinesweeperException;
+import minesweeper.exeptions.QuitGameException;
 import userinterface.TextUI;
 
 public class Main {
@@ -31,17 +32,21 @@ public class Main {
 				displayGrid();
 				try{
 					makeMove();
+				}catch (QuitGameException e){
+					gameOver=true;
+					quitGame();
+				}catch(MineRevealedException e){
+					gameOver=true;
+					displayGameOver(Minesweeper.gameState.LOSE);
+					playAgain();
 				}catch(MinesweeperException e){
 					gameOver = true;
 					String msg =  e.getMessage();
 					if (msg == "mine"){
-						displayGameOver(Minesweeper.gameState.LOSE);
-						playAgain();
+
 					}else if (msg == "win"){
 						displayGameOver(Minesweeper.gameState.WIN);
 						playAgain();
-					}else if (msg == "quit"){
-						quitGame();
 					}
 				}
 			}
