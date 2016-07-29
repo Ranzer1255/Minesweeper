@@ -82,7 +82,8 @@ public class Main {
 	}
 
 	private static void makeMove() throws MinesweeperException {
-		// TODO Auto-generated method stub
+		
+		
 		
 	}
 
