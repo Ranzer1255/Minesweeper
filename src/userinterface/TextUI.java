@@ -87,7 +87,6 @@ public class TextUI {
 	}
 
 	public int getConsoleSize() {
-		// TODO Auto-generated method stub
 		return CONSOLESIZE;
 	}
 
