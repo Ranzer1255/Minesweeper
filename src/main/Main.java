@@ -17,7 +17,6 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-//		game  = new Minesweeper(); //this needs to be moved
 		ui = new TextUI(System.in, System.out);
 		
 		displayWelcome();
@@ -78,6 +77,7 @@ public class Main {
 
 	private static void makeMove() throws MinesweeperException {
 		
+		//TODO
 		
 	}
 
@@ -119,9 +119,5 @@ public class Main {
 		ui.wrappedPrint('*', "Minesweeper for Command Line!");
 		ui.wrappedPrint('*', "");
 		ui.printFullLine('*');
-		
 	}
-
-
-
 }

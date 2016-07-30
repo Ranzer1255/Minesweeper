@@ -18,8 +18,56 @@ public class Field {
 		
 	}
 
-	public Cell getCell(int x, int y) {		
+	public Cell getCell(int x, int y) {	
 		return field[x][y];
+	}
+
+	public StringBuilder toGridString() {
+		StringBuilder rtn=new StringBuilder();
+		
+		//top ruller
+		
+		rtn.append("* ");
+		rtn.append("| ");
+		for (int i = 0; i < sizeX; i++) {
+			rtn.append((char)('a'+i));
+			rtn.append(" ");
+		}
+		rtn.append("| ");
+		rtn.append("*");
+		rtn.append('\n');
+		
+		
+		//top border
+		rtn.append("- ");
+		rtn.append("- ");
+		for (int i = 0; i < sizeX; i++) {
+			rtn.append("- ");
+		}
+		rtn.append("| " );
+		rtn.append("- ");
+		rtn.append("\n");
+		
+		//Grid
+		for (int i = 0; i < field.length; i++) {
+			
+			rtn.append((char)('a'+i));
+			rtn.append(" | ");
+			for (int j = 0; j < field[i].length; j++) {
+				rtn.append(getCell(i, j).getChar());
+				rtn.append(" ");
+			}
+			rtn.append("|\n");
+		}
+		
+		//bottom border
+		rtn.append("* | ");
+		for (int i = 0; i < sizeX; i++) {
+			rtn.append("- ");
+		}
+		rtn.append("| *\n");
+		
+		return rtn;
 	}
 
 	private void instanciateCellArray(int x, int y) {
@@ -36,7 +84,7 @@ public class Field {
 			//get random cell
 			int randX, randY;
 			do {
-				randX = randomInt(sizeX+1); randY = randomInt(sizeY+1);
+				randX = randomInt(sizeX); randY = randomInt(sizeY);
 			}while(getCell(randX, randY).isMine());
 			field[randX][randY] = new Mine();
 		}
@@ -71,15 +119,15 @@ public class Field {
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y+1));
-		} else if (x==0&&y==sizeY){		//Northeast corner
+		} else if (x==0&&y==sizeY-1){		//Northeast corner
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y-1));
-		} else if (x==sizeX&&y==0){		//Southwest corner
+		} else if (x==sizeX-1&&y==0){		//Southwest corner
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y+1));
-		} else if (x==sizeX&&y==sizeY){	//Southeast corner
+		} else if (x==sizeX-1&&y==sizeY-1){	//Southeast corner
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y-1));
@@ -89,7 +137,7 @@ public class Field {
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y-1));
 			rtn.add(getCell(x+1, y+1));
-		} else if (x==sizeX){			//South edge
+		} else if (x==sizeX-1){			//South edge
 			rtn.add(getCell(x  , y-1));
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x-1, y  ));
@@ -101,7 +149,7 @@ public class Field {
 			rtn.add(getCell(x  , y+1));
 			rtn.add(getCell(x+1, y  ));
 			rtn.add(getCell(x+1, y+1));
-		} else if (y==sizeY){			//East edge
+		} else if (y==sizeY-1){			//East edge
 			rtn.add(getCell(x-1, y  ));
 			rtn.add(getCell(x-1, y-1));
 			rtn.add(getCell(x  , y-1));
@@ -117,55 +165,6 @@ public class Field {
 			rtn.add(getCell(x+1, y-1));
 			rtn.add(getCell(x+1, y+1));
 		}
-		return rtn;
-	}
-
-	public StringBuilder toGridString() {
-		StringBuilder rtn=new StringBuilder();
-		
-		//top ruller
-		
-		rtn.append('*');
-		rtn.append('|');
-		for (int i = 0; i < sizeX; i++) {
-			rtn.append((char)('a'+i));
-		}
-		rtn.append('|');
-		rtn.append('*');
-		rtn.append('\n');
-		
-		
-		//top border
-		rtn.append('-');
-		rtn.append('|');
-		for (int i = 0; i < sizeX; i++) {
-			rtn.append('-');
-		}
-		rtn.append('|');
-		rtn.append('-');
-		rtn.append("\n");
-		
-		//Grid
-		for (int i = 0; i < field.length; i++) {
-			
-			rtn.append((char)('a'+i));
-			rtn.append('|');
-			for (int j = 0; j < field[i].length; j++) {
-				rtn.append(getCell(i, j).getChar());
-			}
-			rtn.append("| \n");
-		}
-		
-		//bottom border
-		rtn.append('-');
-		rtn.append('|');
-		for (int i = 0; i < sizeX; i++) {
-			rtn.append('-');
-		}
-		rtn.append('|');
-		rtn.append('-');
-		rtn.append("\n");
-		
 		return rtn;
 	}
 }

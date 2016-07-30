@@ -9,18 +9,18 @@ public abstract class Cell {
 		
 	}
 	
-	abstract public boolean isMine();
-	
-	abstract public char getSymbol();
-
 	public char getChar() {
 
 		if (state==CellState.HIDDEN)
-			return ' ';
+			return '*';
 		else
 			return this.getSymbol();
 	}
 	
+	abstract public boolean isMine();
+
+	abstract public char getSymbol();
+
 	private enum CellState {
 		HIDDEN, REVEALED;
 	}
