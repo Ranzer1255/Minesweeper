@@ -24,4 +24,11 @@ public class Clue extends Cell {
 		return Integer.toString(clue).charAt(0);
 	}
 
+	@Override
+	public void revealCell() {
+
+		this.state=CellState.REVEALED;
+		
+	}
+
 }

@@ -1,8 +1,10 @@
 package minesweeper;
 
+import minesweeper.exeptions.MineRevealedException;
+
 public abstract class Cell {
 
-	private CellState state;
+	protected CellState state;
 	
 	public Cell(){
 		state=CellState.HIDDEN;
@@ -13,16 +15,32 @@ public abstract class Cell {
 
 		if (state==CellState.HIDDEN)
 			return '*';
+		else if (state==CellState.FLAGGED)
+			return '!';
 		else
 			return this.getSymbol();
 	}
+	
+	public void toggleCellFlag() {
+		
+		if (state==CellState.REVEALED){
+			return; //if revealed, ignore the call
+		}else if (state==CellState.HIDDEN){
+			state = CellState.FLAGGED;
+		}else{
+			state=CellState.HIDDEN;
+		}
+		
+	}
+		
+	abstract public void revealCell() throws MineRevealedException;
 	
 	abstract public boolean isMine();
 
 	abstract public char getSymbol();
 
-	private enum CellState {
-		HIDDEN, REVEALED;
+	protected enum CellState {
+		HIDDEN, REVEALED, FLAGGED;
 	}
 
 }
