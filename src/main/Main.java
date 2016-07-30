@@ -3,6 +3,7 @@ import minesweeper.Minesweeper;
 import minesweeper.exeptions.MineRevealedException;
 import minesweeper.exeptions.MinesweeperException;
 import minesweeper.exeptions.QuitGameException;
+import userinterface.Command;
 import userinterface.TextUI;
 
 public class Main {
@@ -30,18 +31,8 @@ public class Main {
 			while(!gameOver){
 				
 				displayGrid();
-				try{
-					makeMove();
-				}catch (QuitGameException e){
-					gameOver=true;
-					quitGame();
-				}catch(MineRevealedException e){
-					gameOver=true;
-					displayGameOver(Minesweeper.gameState.LOSE);
-					playAgain();
-				}catch(MinesweeperException e){
-					e.printStackTrace();
-				}
+				getUsersMove();
+				
 			}
 		}
 		System.exit(0);
@@ -75,9 +66,11 @@ public class Main {
 		ui.print(game.printGrid());
 	}
 
-	private static void makeMove() throws MinesweeperException {
+	private static void getUsersMove() {
 		
-		//TODO
+		Command move = new Command(
+				
+				);
 		
 	}
 
