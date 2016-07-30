@@ -1,8 +1,5 @@
 package main;
 import minesweeper.Minesweeper;
-import minesweeper.exeptions.MineRevealedException;
-import minesweeper.exeptions.MinesweeperException;
-import minesweeper.exeptions.QuitGameException;
 import userinterface.Command;
 import userinterface.TextUI;
 
@@ -68,9 +65,7 @@ public class Main {
 
 	private static void getUsersMove() {
 		
-		Command move = new Command(
-				
-				);
+		Command move = new Command();//TODO 
 		
 	}
 

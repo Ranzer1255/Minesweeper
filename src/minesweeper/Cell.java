@@ -1,7 +1,5 @@
 package minesweeper;
 
-import minesweeper.exeptions.MineRevealedException;
-
 public abstract class Cell {
 
 	protected CellState state;
@@ -33,7 +31,7 @@ public abstract class Cell {
 		
 	}
 		
-	abstract public void revealCell() throws MineRevealedException;
+	abstract public void revealCell();
 	
 	abstract public boolean isMine();
 
