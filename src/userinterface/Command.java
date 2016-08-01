@@ -1,5 +1,7 @@
 package userinterface;
 
-public class Command {
+public interface Command {
+
+	
 
 }

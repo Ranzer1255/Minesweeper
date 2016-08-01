@@ -28,7 +28,8 @@ public class Main {
 			while(!gameOver){
 				
 				displayGrid();
-				getUsersMove();
+				Command move = getUsersMove();
+				
 				
 			}
 		}
@@ -63,10 +64,13 @@ public class Main {
 		ui.print(game.printGrid());
 	}
 
-	private static void getUsersMove() {
+	private static Command getUsersMove() {
 		
-		Command move = new Command();//TODO 
+		Command rtn = new Command();//TODO 
 		
+		
+		
+		return rtn;
 	}
 
 	private static void displayGameOver(Minesweeper.gameState state) {
