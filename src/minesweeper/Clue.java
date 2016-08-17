@@ -2,14 +2,14 @@ package minesweeper;
 
 public class Clue extends Cell {
 	
-	private int clue;
+	private final int CLUE;
 	
 	public Clue(){
-		this.clue=0;
+		this.CLUE=0;
 	}
 	
 	public Clue(int clue){
-		this.clue=clue;
+		this.CLUE=clue;
 	}
 
 	@Override
@@ -21,13 +21,13 @@ public class Clue extends Cell {
 	@Override
 	public char getSymbol() {
 		
-		return Integer.toString(clue).charAt(0);
+		return Integer.toString(CLUE).charAt(0);
 	}
 
 	@Override
 	public void revealCell() {
 
-		this.state=CellState.REVEALED;
+		this.setState(CellState.REVEALED);
 		
 	}
 

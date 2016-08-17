@@ -2,13 +2,22 @@ package minesweeper;
 
 public abstract class Cell {
 
-	protected CellState state;
+	public enum CellState {HIDDEN, REVEALED, FLAGGED;}
+	private CellState state;
 	
 	public Cell(){
 		state=CellState.HIDDEN;
 		
 	}
 	
+	public CellState getState() {
+		return state;
+	}
+
+	public void setState(CellState state) {
+		this.state = state;
+	}
+
 	public char getChar() {
 
 		if (state==CellState.HIDDEN)
@@ -36,9 +45,5 @@ public abstract class Cell {
 	abstract public boolean isMine();
 
 	abstract public char getSymbol();
-
-	protected enum CellState {
-		HIDDEN, REVEALED, FLAGGED;
-	}
 
 }
