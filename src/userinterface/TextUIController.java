@@ -6,14 +6,14 @@ public class TextUIController {
 	private static boolean gameOver;
 	private static boolean playing;
 	private static Minesweeper game;
-	private static TextUIView ui;
+	private static TextUIHelper ui;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-		ui = new TextUIView(System.in, System.out);
+		ui = new TextUIHelper(System.in, System.out);
 		
 		displayWelcome();
 		
