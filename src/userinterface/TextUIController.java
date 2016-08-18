@@ -1,21 +1,19 @@
-package main;
+package userinterface;
 import minesweeper.Minesweeper;
-import userinterface.Command;
-import userinterface.TextUI;
 
-public class Main {
+public class TextUIController {
 	
 	private static boolean gameOver;
 	private static boolean playing;
 	private static Minesweeper game;
-	private static TextUI ui;
+	private static TextUIView ui;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-		ui = new TextUI(System.in, System.out);
+		ui = new TextUIView(System.in, System.out);
 		
 		displayWelcome();
 		
@@ -28,7 +26,7 @@ public class Main {
 			while(!gameOver){
 				
 				displayGrid();
-				Command move = getUsersMove();
+//				Command move = getUsersMove();
 				
 				
 			}
@@ -64,14 +62,14 @@ public class Main {
 		ui.print(game.printGrid());
 	}
 
-	private static Command getUsersMove() {
-		
-		Command rtn = new Command();//TODO 
-		
-		
-		
-		return rtn;
-	}
+//	private static Command getUsersMove() {
+//		
+//		Command rtn = new Command();//TODO 
+//		
+//		
+//		
+//		return rtn;
+//	}
 
 	private static void displayGameOver(Minesweeper.gameState state) {
 		// TODO Auto-generated method stub

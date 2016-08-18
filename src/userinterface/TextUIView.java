@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author Bobby Dillingham
  *
  */
-public class TextUI {
+public class TextUIView {
 	
 
 	private static final int DEFAULT_CONSOLESIZE = 80;	
@@ -25,15 +25,15 @@ public class TextUI {
 	/**
 	 * basic constructor that will default to System.in and System.out with a default CONSOLESIZE of 80
 	 */
-	public TextUI() {
+	public TextUIView() {
 		this(System.in,System.out,DEFAULT_CONSOLESIZE);
 	}	
 	
-	public TextUI(InputStream in, PrintStream out) {
+	public TextUIView(InputStream in, PrintStream out) {
 		this(in,out,DEFAULT_CONSOLESIZE);
 	}
 	
-	public TextUI(InputStream in, PrintStream out, int size) {
+	public TextUIView(InputStream in, PrintStream out, int size) {
 		this.in=in;
 		this.out=out;
 		this.CONSOLESIZE=size;
