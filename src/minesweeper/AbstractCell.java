@@ -1,11 +1,11 @@
 package minesweeper;
 
-public abstract class Cell {
+public abstract class AbstractCell {
 
 	public enum CellState {HIDDEN, REVEALED, FLAGGED;}
 	private CellState state;
 	
-	public Cell(){
+	public AbstractCell(){
 		state=CellState.HIDDEN;
 		
 	}

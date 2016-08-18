@@ -4,7 +4,7 @@ package minesweeper;
  * @author Bobby Dillingham
  *
  */
-public class Minesweeper implements MinesweeperModelInterface{
+public class Minesweeper implements IMinesweeperModel{
 
 	public enum gameState{WIN, LOSE;}
 	public static final int MAXSIZE = 26;
@@ -46,13 +46,13 @@ public class Minesweeper implements MinesweeperModelInterface{
 	}
 
 	@Override
-	public void regFieldObserver(FieldObserver fo) {
+	public void regFieldObserver(IFieldObserver fo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void remFieldObserver(FieldObserver fo) {
+	public void remFieldObserver(IFieldObserver fo) {
 		// TODO Auto-generated method stub
 		
 	}

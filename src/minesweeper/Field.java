@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Field {
 
-	private Cell[][] field;
+	private AbstractCell[][] field;
 	private int sizeX,sizeY,mines;
 	
 	public Field(int x, int y, int mines){
@@ -18,7 +18,7 @@ public class Field {
 		
 	}
 
-	public Cell getCell(int x, int y) {	
+	public AbstractCell getCell(int x, int y) {	
 		return field[x][y];
 	}
 
@@ -71,7 +71,7 @@ public class Field {
 	}
 
 	private void instanciateCellArray(int x, int y) {
-		field=new Cell[x][y];
+		field=new AbstractCell[x][y];
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				field[i][j] = new Clue();
@@ -99,9 +99,9 @@ public class Field {
 			for (int j = 0; j < sizeY; j++) {
 				
 				if(!getCell(i,j).isMine()){
-					ArrayList<Cell> neighbors = getNeighborsOfCell(i, j);
+					ArrayList<AbstractCell> neighbors = getNeighborsOfCell(i, j);
 					int count=0;
-					for (Cell c : neighbors) {
+					for (AbstractCell c : neighbors) {
 						if (c.isMine()) {
 							count++;
 						}
@@ -112,8 +112,8 @@ public class Field {
 		}
 	}
 
-	private ArrayList<Cell> getNeighborsOfCell(int x, int y) {
-		ArrayList<Cell> rtn = new ArrayList<Cell>();
+	private ArrayList<AbstractCell> getNeighborsOfCell(int x, int y) {
+		ArrayList<AbstractCell> rtn = new ArrayList<AbstractCell>();
 		
 		if((x==0&&y==0)){ 				//Northwest corner
 			rtn.add(getCell(x  , y+1));

@@ -1,6 +1,6 @@
 package minesweeper;
 
-public interface FieldObserver {
+public interface IFieldObserver {
 
 	public void FieldChanged();
 }

@@ -1,6 +1,6 @@
 package minesweeper;
 
-public class Clue extends Cell {
+public class Clue extends AbstractCell {
 	
 	private final int CLUE;
 	

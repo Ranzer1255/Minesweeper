@@ -1,6 +1,6 @@
 package minesweeper;
 
-public class Mine extends Cell {
+public class Mine extends AbstractCell {
 
 	@Override
 	public boolean isMine() {

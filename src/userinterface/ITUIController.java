@@ -1,6 +1,6 @@
 package userinterface;
 
-public interface ITextUIController {
+public interface ITUIController {
 	
 	public void parseInput(String in);
 	

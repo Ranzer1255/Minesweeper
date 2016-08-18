@@ -1,6 +1,6 @@
 package minesweeper;
 
-public interface MinesweeperModelInterface{
+public interface IMinesweeperModel{
 
 	public void newGame();
 	
@@ -10,8 +10,8 @@ public interface MinesweeperModelInterface{
 
 	public void flagCell(int x, int y);
 	
-	public void regFieldObserver(FieldObserver fo);
+	public void regFieldObserver(IFieldObserver fo);
 	
-	public void remFieldObserver(FieldObserver fo);
+	public void remFieldObserver(IFieldObserver fo);
 	
 }

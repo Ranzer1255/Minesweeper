@@ -1,19 +1,19 @@
 package userinterface;
 import minesweeper.Minesweeper;
 
-public class TextUIController {
+public class TUIController implements ITUIController{
 	
 	private static boolean gameOver;
 	private static boolean playing;
 	private static Minesweeper game;
-	private static TextUIHelper ui;
+	private static TUIHelper ui;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-		ui = new TextUIHelper(System.in, System.out);
+		ui = new TUIHelper(System.in, System.out);
 		
 		displayWelcome();
 		
@@ -109,5 +109,11 @@ public class TextUIController {
 		ui.wrappedPrint('*', "Minesweeper for Command Line!");
 		ui.wrappedPrint('*', "");
 		ui.printFullLine('*');
+	}
+
+	@Override
+	public void parseInput(String in) {
+		// TODO Auto-generated method stub
+		
 	}
 }

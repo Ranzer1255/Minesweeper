@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author Bobby Dillingham
  *
  */
-public class TextUIHelper {
+public class TUIHelper {
 	
 
 	private static final int DEFAULT_CONSOLESIZE = 80;	
@@ -25,15 +25,15 @@ public class TextUIHelper {
 	/**
 	 * basic constructor that will default to System.in and System.out with a default CONSOLESIZE of 80
 	 */
-	public TextUIHelper() {
+	public TUIHelper() {
 		this(System.in,System.out,DEFAULT_CONSOLESIZE);
 	}	
 	
-	public TextUIHelper(InputStream in, PrintStream out) {
+	public TUIHelper(InputStream in, PrintStream out) {
 		this(in,out,DEFAULT_CONSOLESIZE);
 	}
 	
-	public TextUIHelper(InputStream in, PrintStream out, int size) {
+	public TUIHelper(InputStream in, PrintStream out, int size) {
 		this.in=in;
 		this.out=out;
 		this.CONSOLESIZE=size;
