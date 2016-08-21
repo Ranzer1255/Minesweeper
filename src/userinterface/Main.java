@@ -11,7 +11,7 @@ public class Main {
 
 		ITUIController ui = new TUIController(System.in, System.out, game);
 		
-		game.startGame();
+		ui.startGame();
 		
 		System.exit(0);
 	}

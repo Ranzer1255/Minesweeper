@@ -104,9 +104,9 @@ public class TUIHelper {
 		return rtn;
 	}
 
-	public void print(StringBuilder printGrid) {
+	public void print(StringBuilder intput) {
 
-		out.print(printGrid);
+		out.print(intput);
 		
 	}
 

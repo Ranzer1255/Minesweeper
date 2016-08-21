@@ -1,6 +1,7 @@
 package minesweeper;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Field {
@@ -22,6 +23,13 @@ public class Field {
 		return field[x][y];
 	}
 
+	
+	/*
+	 *if this gets redone at some time. pass the entire grid as a string of symbols and let the view parse that string and format it
+	 *
+	 *but for now its fine as is and i see no need for it to be changed this keeps it well encapsulated, the Field class has the 
+	 *information needed to easily form the grid
+	 */
 	public StringBuilder toGridString() {
 		StringBuilder rtn=new StringBuilder();
 		
@@ -99,7 +107,7 @@ public class Field {
 			for (int j = 0; j < sizeY; j++) {
 				
 				if(!getCell(i,j).isMine()){
-					ArrayList<AbstractCell> neighbors = getNeighborsOfCell(i, j);
+					List<AbstractCell> neighbors = getNeighborsOfCell(i, j);
 					int count=0;
 					for (AbstractCell c : neighbors) {
 						if (c.isMine()) {
@@ -112,8 +120,8 @@ public class Field {
 		}
 	}
 
-	private ArrayList<AbstractCell> getNeighborsOfCell(int x, int y) {
-		ArrayList<AbstractCell> rtn = new ArrayList<AbstractCell>();
+	private List<AbstractCell> getNeighborsOfCell(int x, int y) {
+		List<AbstractCell> rtn = new ArrayList<AbstractCell>();
 		
 		if((x==0&&y==0)){ 				//Northwest corner
 			rtn.add(getCell(x  , y+1));

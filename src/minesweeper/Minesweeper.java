@@ -10,24 +10,17 @@ public class Minesweeper implements IMinesweeperModel{
 	public static final int MAXSIZE = 26;
 	private Field mineField;
 
+	public Minesweeper() {}
+
 	public Minesweeper(int x, int y, int numMines){
 
 		mineField = new Field(x,y,numMines);
 		
 	}	
 
-	public Minesweeper() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public StringBuilder printGrid() {
-		
-		return mineField.toGridString();
-	}
-
 	@Override
 	public void newGame(int x, int y, int numMines) {
-		// TODO Auto-generated method stub
+		mineField = new Field(x,y,numMines);
 		
 	}
 
@@ -47,6 +40,11 @@ public class Minesweeper implements IMinesweeperModel{
 	public void flagCell(int x, int y) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public StringBuilder printGrid() {
+		
+		return mineField.toGridString();
 	}
 
 	@Override

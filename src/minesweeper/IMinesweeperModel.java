@@ -13,5 +13,7 @@ public interface IMinesweeperModel{
 	public void regFieldObserver(IFieldObserver fo);
 	
 	public void remFieldObserver(IFieldObserver fo);
+
+	public StringBuilder printGrid();
 	
 }
