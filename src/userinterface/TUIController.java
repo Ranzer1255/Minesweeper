@@ -1,4 +1,8 @@
 package userinterface;
+import java.io.InputStream;
+import java.io.PrintStream;
+
+import minesweeper.IMinesweeperModel;
 import minesweeper.Minesweeper;
 
 public class TUIController implements ITUIController{
@@ -6,44 +10,17 @@ public class TUIController implements ITUIController{
 	private static boolean gameOver;
 	private static boolean playing;
 	private static Minesweeper game;
-	private static TUIHelper ui;
+	private static TUIView ui;
+
+	public TUIController(InputStream in, PrintStream out, IMinesweeperModel game2) {
+		this.ui = new TUIView(in, out);
+		
+	}
+
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-
-		ui = new TUIHelper(System.in, System.out);
-		
-		displayWelcome();
-		
-		playing=true;
-		while (playing){
-			
-			getSettings();
-			
-			gameOver=false;
-			while(!gameOver){
-				
-				displayGrid();
-//				Command move = getUsersMove();
-				
-				
-			}
-		}
-		System.exit(0);
-	}
-
-	private static void displayWelcome() {
-		
-		ui.printFullLine('*');
-		ui.wrappedPrint('|',"");
-		ui.wrappedPrint('|', "Welcome to Minesweeper for Command Line!");
-		ui.wrappedPrint('|', "By");
-		ui.wrappedPrint('|', "Bobby Dillingham");
-		ui.wrappedPrint('|', "");
-		ui.printFullLine('*');
-	}
 
 	private static void getSettings() {
 
@@ -97,22 +74,14 @@ public class TUIController implements ITUIController{
 	}
 
 	private static void quitGame() {
-		displayGoodbye();
+		ui.displayGoodbye();
 		playing =false;
 	}
 
-	private static void displayGoodbye() {
-		ui.printFullLine('*');
-		ui.wrappedPrint('*', "");
-		ui.wrappedPrint('*', "Thanks");
-		ui.wrappedPrint('*', "for playing");
-		ui.wrappedPrint('*', "Minesweeper for Command Line!");
-		ui.wrappedPrint('*', "");
-		ui.printFullLine('*');
-	}
+
 
 	@Override
-	public void parseInput(String in) {
+	public void startGame() {
 		// TODO Auto-generated method stub
 		
 	}

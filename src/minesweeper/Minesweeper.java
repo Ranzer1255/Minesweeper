@@ -16,6 +16,10 @@ public class Minesweeper implements IMinesweeperModel{
 		
 	}	
 
+	public Minesweeper() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public StringBuilder printGrid() {
 		
 		return mineField.toGridString();
