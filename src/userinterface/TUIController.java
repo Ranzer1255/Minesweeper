@@ -18,6 +18,37 @@ public class TUIController implements ITUIController{
 	}
 
 
+	@Override	
+	public void newGame(){
+		this.getSettings();
+		this.startGame();
+	}
+
+
+	@Override
+	public boolean gameWin() {
+
+		ui.displayWinGameOver();
+		return this.playAgain();
+		
+	}
+
+
+	@Override
+	public boolean gameLose() {
+		
+		ui.displayLoseGameOver();
+		return this.playAgain();
+		
+	}
+
+
+	private boolean playAgain() {
+
+		return false; //TODO
+	}
+
+
 	/**
 	 * @param args
 	 */
@@ -33,19 +64,10 @@ public class TUIController implements ITUIController{
 		
 	}
 
-
 	private void displayGrid() {
 
 		ui.print(game.printGrid());
 	}
-
-
-	private void displayGameOver(Minesweeper.gameState state) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 	private void quitGame() {
 		ui.displayGoodbye();
@@ -54,13 +76,8 @@ public class TUIController implements ITUIController{
 
 
 
-	@Override
-	public void startGame() {
-		// TODO Auto-generated method stub
+
+	private void startGame() {
 		
-	}
-	
-	public void newGame(){
-		// TODO
 	}
 }

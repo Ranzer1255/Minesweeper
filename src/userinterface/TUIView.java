@@ -75,4 +75,14 @@ public class TUIView {
 		ui.print(grid);
 		
 	}
+
+	public void displayLoseGameOver() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void displayWinGameOver() {
+		// TODO Auto-generated method stub
+		
+	}
 }

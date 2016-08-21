@@ -58,6 +58,10 @@ public class Minesweeper implements IMinesweeperModel{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void updateObservers(){
+		
+	}
 
 
 }
