@@ -22,7 +22,7 @@ public class Minesweeper implements IMinesweeperModel{
 	}
 
 	@Override
-	public void newGame() {
+	public void newGame(int x, int y, int numMines) {
 		// TODO Auto-generated method stub
 		
 	}

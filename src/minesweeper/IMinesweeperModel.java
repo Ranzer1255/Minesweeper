@@ -2,7 +2,7 @@ package minesweeper;
 
 public interface IMinesweeperModel{
 
-	public void newGame();
+	public void newGame(int x, int y, int numMines);
 	
 	public Field getMinefield();
 	
