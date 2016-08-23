@@ -14,7 +14,7 @@ public abstract class AbstractCell {
 		return state;
 	}
 
-	void setState(CellState state) {
+	protected void setState(CellState state) {
 		this.state = state;
 	}
 
