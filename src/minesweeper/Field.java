@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import cells.AbstractCell;
+import cells.Clue;
+import cells.Mine;
+import cells.AbstractCell.CellState;
+
 public class Field {
 
 	private AbstractCell[][] field;
@@ -174,5 +179,15 @@ public class Field {
 			rtn.add(getCell(x+1, y+1));
 		}
 		return rtn;
+	}
+
+	public void clickCell(int x, int y) {
+
+		field[x][y].revealCell();
+		
+	}
+	
+	public void flagCell(int x, int y){
+		field[x][y].toggleCellFlag();
 	}
 }

@@ -1,14 +1,12 @@
 package userinterface;
+
 import java.io.InputStream;
 import java.io.PrintStream;
-
 import minesweeper.IMinesweeperModel;
 import minesweeper.Minesweeper;
 
 public class TUIController implements ITUIController{
 	
-	private boolean gameOver;
-	private boolean playing;
 	private IMinesweeperModel game;
 	private TUIView ui;
 
@@ -69,8 +67,9 @@ public class TUIController implements ITUIController{
 		ui.print(game.printGrid());
 	}
 
-	private void quitGame() {
+	public void quitGame() {
 		ui.displayGoodbye();
+		try {Thread.sleep(1000);} catch (InterruptedException e) {}
 		System.exit(0);
 	}
 

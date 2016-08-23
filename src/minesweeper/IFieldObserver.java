@@ -2,5 +2,7 @@ package minesweeper;
 
 public interface IFieldObserver {
 
-	public void FieldChanged();
+	public void update();
+	
+	public void update(Field f);
 }

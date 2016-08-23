@@ -1,4 +1,4 @@
-package minesweeper;
+package cells;
 
 public abstract class AbstractCell {
 
@@ -14,7 +14,7 @@ public abstract class AbstractCell {
 		return state;
 	}
 
-	public void setState(CellState state) {
+	void setState(CellState state) {
 		this.state = state;
 	}
 

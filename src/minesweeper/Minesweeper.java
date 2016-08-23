@@ -1,5 +1,7 @@
 package minesweeper;
 
+import java.util.ArrayList;
+
 /**
  * @author Bobby Dillingham
  *
@@ -8,8 +10,14 @@ public class Minesweeper implements IMinesweeperModel{
 
 	public enum gameState{WIN, LOSE;}
 	public static final int MAXSIZE = 26;
+	
+	
+	private ArrayList<IFieldObserver> fos;
+	private boolean gameOver;
+	private boolean playing;
 	private Field mineField;
-
+	
+	
 	public Minesweeper() {}
 
 	public Minesweeper(int x, int y, int numMines){
@@ -21,6 +29,7 @@ public class Minesweeper implements IMinesweeperModel{
 	@Override
 	public void newGame(int x, int y, int numMines) {
 		mineField = new Field(x,y,numMines);
+		updateObservers();
 		
 	}
 
@@ -32,7 +41,7 @@ public class Minesweeper implements IMinesweeperModel{
 
 	@Override
 	public void clickCell(int x, int y) {
-		// TODO Auto-generated method stub
+		mineField.clickCell(x,y);
 	
 	}
 
@@ -59,8 +68,10 @@ public class Minesweeper implements IMinesweeperModel{
 		
 	}
 	
-	private void updateObservers(){
-		
+	private void updateObservers(){//TODO
+		for (IFieldObserver fo : fos) {
+			fo.update();
+		}
 	}
 
 
