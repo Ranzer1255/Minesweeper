@@ -12,12 +12,11 @@ public class Minesweeper implements IMinesweeperModel{
 	public static final int MAXSIZE = 26;
 	
 	
-	private ArrayList<IFieldObserver> fos;
 	private Field mineField;
 	private IGameController controler;
 	
 	
-	public Minesweeper() {}
+	public Minesweeper() {}//TODO
 
 	public Minesweeper(int x, int y, int numMines){
 		
@@ -31,6 +30,8 @@ public class Minesweeper implements IMinesweeperModel{
 	@Override
 	public void newGame(int x, int y, int numMines) {
 		mineField = new Field(x,y,numMines);
+		
+		//TODO?
 		
 	}
 
@@ -46,7 +47,7 @@ public class Minesweeper implements IMinesweeperModel{
 		if (mineField.getCell(x, y).isMine()) {
 			gameLose();
 		} else {
-			mineField.clickCell(x, y);
+			mineField.clickCell(new Location(x,y));
 		} 
 	}
 
