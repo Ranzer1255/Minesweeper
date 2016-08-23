@@ -23,8 +23,4 @@ public class Clue extends AbstractCell {
 		
 		return Integer.toString(CLUE).charAt(0);
 	}
-
-	@Override
-
-
 }
