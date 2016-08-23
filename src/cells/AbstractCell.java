@@ -1,5 +1,7 @@
 package cells;
 
+import cells.AbstractCell.CellState;
+
 public abstract class AbstractCell {
 
 	public enum CellState {HIDDEN, REVEALED, FLAGGED;}
@@ -39,8 +41,23 @@ public abstract class AbstractCell {
 		}
 		
 	}
+	
+	public void clickCell(){
+		if (state==CellState.FLAGGED){
+			return; //do nothing
+		} else {
+			setState(CellState.REVEALED);
+		}
+	}
+	
+	/*
+	 * end of game reveal
+	 */
+	public void revealCell() {
+
+		this.setState(CellState.REVEALED);
 		
-	abstract public void revealCell();
+	}
 	
 	abstract public boolean isMine();
 

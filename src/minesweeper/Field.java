@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import cells.*;
 
-public class Field {
+public class Field implements IFieldObservable{
 
 	private AbstractCell[][] field;
 	private int sizeX,sizeY,mines;
+	private List<IFieldObserver> fos;
 	
 	public Field(int x, int y, int mines){
 		
+		fos=new ArrayList<>();
 		this.sizeX=x; this.sizeY=y;		
 		this.mines=mines;
 		instanciateCellArray(x, y);
@@ -77,6 +79,29 @@ public class Field {
 		rtn.append("| *\n");
 		
 		return rtn;
+	}
+
+	public void clickCell(int x, int y) {
+	
+		field[x][y].revealCell();
+		updateObservers();
+		
+	}
+
+	public void flagCell(int x, int y){
+		field[x][y].toggleCellFlag();
+		updateObservers();
+	}
+
+	/*
+	 * end of game reveal.
+	 */
+	public void revealAll() {
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field[i].length; j++) {
+				field[i][j].revealCell();
+			}
+		}	
 	}
 
 	private void instanciateCellArray(int x, int y) {
@@ -177,18 +202,15 @@ public class Field {
 		return rtn;
 	}
 
-	public void clickCell(int x, int y) {
+	@Override
+	public void regFieldObserver(IFieldObserver fo) {fos.add(fo);}
 
-		field[x][y].revealCell();
-		
-	}
+	@Override
+	public void remFieldObserver(IFieldObserver fo) {fos.remove(fo);}
 	
-	public void flagCell(int x, int y){
-		field[x][y].toggleCellFlag();
-	}
-
-	public void revealAll() {
-		// TODO Auto-generated method stub
-		
+	private void updateObservers(){
+		for (IFieldObserver fo : fos) {
+			fo.update();
+		}
 	}
 }

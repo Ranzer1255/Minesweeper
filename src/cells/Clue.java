@@ -25,10 +25,6 @@ public class Clue extends AbstractCell {
 	}
 
 	@Override
-	public void revealCell() {
 
-		this.setState(CellState.REVEALED);
-		
-	}
 
 }

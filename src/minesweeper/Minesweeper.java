@@ -31,7 +31,6 @@ public class Minesweeper implements IMinesweeperModel{
 	@Override
 	public void newGame(int x, int y, int numMines) {
 		mineField = new Field(x,y,numMines);
-		updateObservers();
 		
 	}
 
@@ -49,7 +48,6 @@ public class Minesweeper implements IMinesweeperModel{
 		} else {
 			mineField.clickCell(x, y);
 		} 
-		updateObservers();
 	}
 
 	@Override
@@ -72,14 +70,12 @@ public class Minesweeper implements IMinesweeperModel{
 	}
 
 	@Override
-	public void regFieldObserver(IFieldObserver fo) {fos.add(fo);}
+	public void regFieldObserver(IFieldObserver fo) {
+		mineField.regFieldObserver(fo);
+	}
 
 	@Override
-	public void remFieldObserver(IFieldObserver fo) {fos.remove(fo);}
-	
-	private void updateObservers(){
-		for (IFieldObserver fo : fos) {
-			fo.update();
-		}
+	public void remFieldObserver(IFieldObserver fo) {
+		mineField.remFieldObserver(fo);
 	}
 }

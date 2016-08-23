@@ -1,6 +1,6 @@
 package minesweeper;
 
-public interface IMinesweeperModel{
+public interface IMinesweeperModel extends IFieldObservable{
 
 	public void newGame(int x, int y, int numMines);
 	
@@ -9,10 +9,6 @@ public interface IMinesweeperModel{
 	public void clickCell(int x, int y);
 
 	public void flagCell(int x, int y);
-	
-	public void regFieldObserver(IFieldObserver fo);
-	
-	public void remFieldObserver(IFieldObserver fo);
 
 	public StringBuilder printGrid();
 	
