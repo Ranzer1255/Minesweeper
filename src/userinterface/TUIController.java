@@ -3,9 +3,10 @@ package userinterface;
 import java.io.InputStream;
 import java.io.PrintStream;
 import minesweeper.IMinesweeperModel;
+import minesweeper.IGameController;
 import minesweeper.Minesweeper;
 
-public class TUIController implements ITUIController{
+public class TUIController implements IGameController{
 	
 	private IMinesweeperModel game;
 	private TUIView ui;
