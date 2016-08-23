@@ -15,8 +15,8 @@ public class Mine extends AbstractCell {
 	}
 
 	@Override
-	public void revealCell() {
-				
+	public int getClue() {
+		return -1;
 	}
 
 }

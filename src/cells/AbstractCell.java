@@ -63,4 +63,6 @@ public abstract class AbstractCell {
 
 	abstract public char getSymbol();
 
+	abstract public int getClue();
+
 }
