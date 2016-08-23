@@ -186,4 +186,9 @@ public class Field {
 	public void flagCell(int x, int y){
 		field[x][y].toggleCellFlag();
 	}
+
+	public void revealAll() {
+		// TODO Auto-generated method stub
+		
+	}
 }

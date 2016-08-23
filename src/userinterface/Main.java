@@ -1,6 +1,7 @@
 package userinterface;
 
 import minesweeper.IMinesweeperModel;
+import minesweeper.IGameController;
 import minesweeper.Minesweeper;
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
 		
 		IMinesweeperModel game = new Minesweeper(); 
 
-		ITUIController ui = new TUIController(System.in, System.out, game);
+		IGameController ui = new TUIController(System.in, System.out, game);
 		
 		ui.newGame();
 	}

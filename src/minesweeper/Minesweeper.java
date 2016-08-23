@@ -13,18 +13,20 @@ public class Minesweeper implements IMinesweeperModel{
 	
 	
 	private ArrayList<IFieldObserver> fos;
-	private boolean gameOver;
-	private boolean playing;
 	private Field mineField;
+	private IGameController controler;
 	
 	
 	public Minesweeper() {}
 
 	public Minesweeper(int x, int y, int numMines){
-
-		mineField = new Field(x,y,numMines);
 		
-	}	
+		mineField = new Field(x,y,numMines);
+	}
+	
+	public void setControler(IGameController controler){
+		this.controler = controler;
+	}
 
 	@Override
 	public void newGame(int x, int y, int numMines) {
@@ -41,13 +43,26 @@ public class Minesweeper implements IMinesweeperModel{
 
 	@Override
 	public void clickCell(int x, int y) {
-		mineField.clickCell(x,y);
-	
+
+		if (mineField.getCell(x, y).isMine()) {
+			gameLose();
+		} else {
+			mineField.clickCell(x, y);
+		} 
+		updateObservers();
 	}
 
 	@Override
 	public void flagCell(int x, int y) {
-		// TODO Auto-generated method stub
+
+		mineField.flagCell(x, y);
+		
+	}
+
+	private void gameLose() {
+		
+		mineField.revealAll();
+		controler.gameLose();
 		
 	}
 
@@ -57,22 +72,14 @@ public class Minesweeper implements IMinesweeperModel{
 	}
 
 	@Override
-	public void regFieldObserver(IFieldObserver fo) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void regFieldObserver(IFieldObserver fo) {fos.add(fo);}
 
 	@Override
-	public void remFieldObserver(IFieldObserver fo) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void remFieldObserver(IFieldObserver fo) {fos.remove(fo);}
 	
-	private void updateObservers(){//TODO
+	private void updateObservers(){
 		for (IFieldObserver fo : fos) {
 			fo.update();
 		}
 	}
-
-
 }
