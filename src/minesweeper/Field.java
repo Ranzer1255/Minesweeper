@@ -22,11 +22,44 @@ public class Field implements IFieldObservable{
 		
 	}
 
-	public AbstractCell getCell(int x, int y) {	
+	public AbstractCell getCell(int x, int y) {
 		return field[x][y];
 	}
 
+	public AbstractCell getCell(Location l) {	
+		return field[l.getX()][l.getY()];
+	}
+
 	
+	public void clickCell(Location c) {
+	
+		getCell(c).clickCell();
+		if (getCell(c).getClue()==0) {
+			List <Location> nighbors = getNeighborsOfCell(c);
+			for (Location n : nighbors) {
+				clickCell(n);
+			}
+		}
+		updateObservers();
+		
+	}
+
+	public void flagCell(int x, int y){
+		field[x][y].toggleCellFlag();
+		updateObservers();
+	}
+
+	/*
+	 * end of game reveal.
+	 */
+	public void revealAll() {
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field[i].length; j++) {
+				field[i][j].revealCell();
+			}
+		}	
+	}
+
 	/*
 	 *if this gets redone at some time. pass the entire grid as a string of symbols and let the view parse that string and format it
 	 *
@@ -65,7 +98,7 @@ public class Field implements IFieldObservable{
 			rtn.append((char)('a'+i));
 			rtn.append(" | ");
 			for (int j = 0; j < field[i].length; j++) {
-				rtn.append(getCell(i, j).getChar());
+				rtn.append(field[i][j].getChar());
 				rtn.append(" ");
 			}
 			rtn.append("|\n");
@@ -79,29 +112,6 @@ public class Field implements IFieldObservable{
 		rtn.append("| *\n");
 		
 		return rtn;
-	}
-
-	public void clickCell(int x, int y) {
-	
-		field[x][y].revealCell();
-		updateObservers();
-		
-	}
-
-	public void flagCell(int x, int y){
-		field[x][y].toggleCellFlag();
-		updateObservers();
-	}
-
-	/*
-	 * end of game reveal.
-	 */
-	public void revealAll() {
-		for (int i = 0; i < field.length; i++) {
-			for (int j = 0; j < field[i].length; j++) {
-				field[i][j].revealCell();
-			}
-		}	
 	}
 
 	private void instanciateCellArray(int x, int y) {
@@ -124,19 +134,15 @@ public class Field implements IFieldObservable{
 		}
 	}
 
-	private int randomInt(int i) {
-		return ThreadLocalRandom.current().nextInt(i);
-	}
-
 	private void setClues() {
 		for (int i = 0; i < sizeX; i++) {
 			for (int j = 0; j < sizeY; j++) {
 				
 				if(!getCell(i,j).isMine()){
-					List<AbstractCell> neighbors = getNeighborsOfCell(i, j);
+					List<Location> neighbors = getNeighborsOfCell(new Location(i,j));
 					int count=0;
-					for (AbstractCell c : neighbors) {
-						if (c.isMine()) {
+					for (Location c : neighbors) {
+						if (getCell(c).isMine()) {
 							count++;
 						}
 					}
@@ -146,58 +152,63 @@ public class Field implements IFieldObservable{
 		}
 	}
 
-	private List<AbstractCell> getNeighborsOfCell(int x, int y) {
-		List<AbstractCell> rtn = new ArrayList<AbstractCell>();
+	private int randomInt(int i) {
+		return ThreadLocalRandom.current().nextInt(i);
+	}
+
+	private List<Location> getNeighborsOfCell(Location origin) {
+		List<Location> rtn = new ArrayList<Location>();
+		int x = origin.getX(); int y = origin.getY();
 		
 		if((x==0&&y==0)){ 				//Northwest corner
-			rtn.add(getCell(x  , y+1));
-			rtn.add(getCell(x+1, y  ));
-			rtn.add(getCell(x+1, y+1));
+			rtn.add(new Location(x  , y+1));
+			rtn.add(new Location(x+1, y  ));
+			rtn.add(new Location(x+1, y+1));
 		} else if (x==0&&y==sizeY-1){		//Northeast corner
-			rtn.add(getCell(x  , y-1));
-			rtn.add(getCell(x+1, y  ));
-			rtn.add(getCell(x+1, y-1));
+			rtn.add(new Location(x  , y-1));
+			rtn.add(new Location(x+1, y  ));
+			rtn.add(new Location(x+1, y-1));
 		} else if (x==sizeX-1&&y==0){		//Southwest corner
-			rtn.add(getCell(x  , y+1));
-			rtn.add(getCell(x-1, y  ));
-			rtn.add(getCell(x-1, y+1));
+			rtn.add(new Location(x  , y+1));
+			rtn.add(new Location(x-1, y  ));
+			rtn.add(new Location(x-1, y+1));
 		} else if (x==sizeX-1&&y==sizeY-1){	//Southeast corner
-			rtn.add(getCell(x  , y-1));
-			rtn.add(getCell(x-1, y  ));
-			rtn.add(getCell(x-1, y-1));
+			rtn.add(new Location(x  , y-1));
+			rtn.add(new Location(x-1, y  ));
+			rtn.add(new Location(x-1, y-1));
 		} else if (x==0){				//North edge
-			rtn.add(getCell(x  , y-1));
-			rtn.add(getCell(x  , y+1));
-			rtn.add(getCell(x+1, y  ));
-			rtn.add(getCell(x+1, y-1));
-			rtn.add(getCell(x+1, y+1));
+			rtn.add(new Location(x  , y-1));
+			rtn.add(new Location(x  , y+1));
+			rtn.add(new Location(x+1, y  ));
+			rtn.add(new Location(x+1, y-1));
+			rtn.add(new Location(x+1, y+1));
 		} else if (x==sizeX-1){			//South edge
-			rtn.add(getCell(x  , y-1));
-			rtn.add(getCell(x  , y+1));
-			rtn.add(getCell(x-1, y  ));
-			rtn.add(getCell(x-1, y-1));
-			rtn.add(getCell(x-1, y+1));
+			rtn.add(new Location(x  , y-1));
+			rtn.add(new Location(x  , y+1));
+			rtn.add(new Location(x-1, y  ));
+			rtn.add(new Location(x-1, y-1));
+			rtn.add(new Location(x-1, y+1));
 		} else if (y==0) {				//West edge
-			rtn.add(getCell(x-1, y  ));
-			rtn.add(getCell(x-1, y+1));
-			rtn.add(getCell(x  , y+1));
-			rtn.add(getCell(x+1, y  ));
-			rtn.add(getCell(x+1, y+1));
+			rtn.add(new Location(x-1, y  ));
+			rtn.add(new Location(x-1, y+1));
+			rtn.add(new Location(x  , y+1));
+			rtn.add(new Location(x+1, y  ));
+			rtn.add(new Location(x+1, y+1));
 		} else if (y==sizeY-1){			//East edge
-			rtn.add(getCell(x-1, y  ));
-			rtn.add(getCell(x-1, y-1));
-			rtn.add(getCell(x  , y-1));
-			rtn.add(getCell(x+1, y  ));
-			rtn.add(getCell(x+1, y-1));
+			rtn.add(new Location(x-1, y  ));
+			rtn.add(new Location(x-1, y-1));
+			rtn.add(new Location(x  , y-1));
+			rtn.add(new Location(x+1, y  ));
+			rtn.add(new Location(x+1, y-1));
 		} else {						//middle
-			rtn.add(getCell(x-1, y  ));
-			rtn.add(getCell(x-1, y-1));
-			rtn.add(getCell(x-1, y+1));
-			rtn.add(getCell(x  , y-1));
-			rtn.add(getCell(x  , y+1));
-			rtn.add(getCell(x+1, y  ));
-			rtn.add(getCell(x+1, y-1));
-			rtn.add(getCell(x+1, y+1));
+			rtn.add(new Location(x-1, y  ));
+			rtn.add(new Location(x-1, y-1));
+			rtn.add(new Location(x-1, y+1));
+			rtn.add(new Location(x  , y-1));
+			rtn.add(new Location(x  , y+1));
+			rtn.add(new Location(x+1, y  ));
+			rtn.add(new Location(x+1, y-1));
+			rtn.add(new Location(x+1, y+1));
 		}
 		return rtn;
 	}
