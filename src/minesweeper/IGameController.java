@@ -1,6 +1,6 @@
-package userinterface;
+package minesweeper;
 
-public interface ITUIController {
+public interface IGameController {
 	
 	public void newGame();
 	
