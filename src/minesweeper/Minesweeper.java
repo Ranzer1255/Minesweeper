@@ -1,6 +1,5 @@
 package minesweeper;
 
-import java.util.ArrayList;
 
 /**
  * @author Bobby Dillingham
