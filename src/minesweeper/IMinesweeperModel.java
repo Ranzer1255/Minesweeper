@@ -4,9 +4,9 @@ public interface IMinesweeperModel extends IFieldObservable{
 
 	public void newGame(int x, int y, int numMines);
 	
-	public void clickCell(int x, int y);
+	public void clickCell(Location c);
 
-	public void flagCell(int x, int y);
+	public void flagCell(Location c);
 
 	public Field getMinefield();
 

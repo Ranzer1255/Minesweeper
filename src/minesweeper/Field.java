@@ -23,19 +23,20 @@ public class Field implements IFieldObservable{
 		
 	}
 
+	@Deprecated
 	public AbstractCell getCell(int x, int y) {
 		return getCell(new Location(x,y));
 	}
 
-	private AbstractCell getCell(Location l) {	
-		return field[l.getX()][l.getY()];
+	public AbstractCell getCell(Location c) {	
+		return field[c.getX()][c.getY()];
 	}
-
+	@Deprecated
 	public void clickCell(int x, int y){
 		clickCell(new Location(x, y));
 	}
 	
-	private void clickCell(Location c) {
+	public void clickCell(Location c) {
 	
 		if (!getCell(c).isMine()) clues--;
 		
@@ -50,8 +51,13 @@ public class Field implements IFieldObservable{
 		
 	}
 
+	@Deprecated
 	public void flagCell(int x, int y){
 		field[x][y].toggleCellFlag();
+		updateObservers();
+	}
+	public void flagCell(Location c){
+		field[c.getX()][c.getY()].toggleCellFlag();
 		updateObservers();
 	}
 
@@ -234,18 +240,4 @@ public class Field implements IFieldObservable{
 			fo.update();
 		}
 	}
-	
-	private class Location {
-
-		private int x, y;
-		
-		public Location(int x, int y){
-			this.x=x; this.y = y;
-		}
-		
-		public int getX(){return x;}
-		
-		public int getY(){return y;}
-	}
-
 }
