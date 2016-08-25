@@ -35,25 +35,19 @@ public class Minesweeper implements IMinesweeperModel{
 	}
 
 	@Override
-	public Field getMinefield() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void clickCell(int x, int y) {
 
 		if (mineField.getCell(x, y).isMine()) {
 			gameLose();
 		} else {
 			mineField.clickCell(x,y);
-			if (fieldClear()){
+			if (fieldIsClear()){
 				gameWin();
 			}
 		}
 	}
 
-	private boolean fieldClear() {
+	private boolean fieldIsClear() {
 		return mineField.isClear();
 	}
 
@@ -81,6 +75,12 @@ public class Minesweeper implements IMinesweeperModel{
 	public StringBuilder printGrid() {
 		
 		return mineField.toGridString();
+	}
+
+	@Override
+	public Field getMinefield() {
+		
+		return mineField;
 	}
 
 	@Override

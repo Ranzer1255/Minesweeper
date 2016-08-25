@@ -3,6 +3,7 @@ package userinterface;
 import java.io.InputStream;
 import java.io.PrintStream;
 import minesweeper.IMinesweeperModel;
+import minesweeper.Field;
 import minesweeper.IGameController;
 import minesweeper.Minesweeper;
 
@@ -14,6 +15,7 @@ public class TUIController implements IGameController{
 	public TUIController(InputStream in, PrintStream out, IMinesweeperModel game) {
 		this.ui = new TUIView(in, out);
 		this.game = game;
+		this.game.regFieldObserver(this);
 	}
 
 
@@ -63,11 +65,6 @@ public class TUIController implements IGameController{
 		
 	}
 
-	private void displayGrid() {
-
-		ui.print(game.printGrid());
-	}
-
 	public void quitGame() {
 		ui.displayGoodbye();
 		try {Thread.sleep(1000);} catch (InterruptedException e) {}
@@ -79,5 +76,22 @@ public class TUIController implements IGameController{
 
 	private void startGame() {
 		
+	}
+
+
+	@Override
+	public void update() {
+
+		displayGrid();		
+	}
+
+
+	@Override
+	public void update(Field f) {}// NO-OP
+
+
+	private void displayGrid() {
+	
+		ui.print(game.printGrid());
 	}
 }

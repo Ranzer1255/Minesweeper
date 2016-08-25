@@ -1,6 +1,6 @@
 package minesweeper;
 
-public interface IGameController {
+public interface IGameController extends IFieldObserver {
 	
 	public void newGame();
 	
