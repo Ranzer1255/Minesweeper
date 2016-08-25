@@ -8,7 +8,7 @@ import cells.*;
 public class Field implements IFieldObservable{
 
 	private AbstractCell[][] field;
-	private int sizeX,sizeY,mines;
+	private int sizeX,sizeY,mines,clues;
 	private List<IFieldObserver> fos;
 	
 	public Field(int x, int y, int mines){
@@ -16,6 +16,7 @@ public class Field implements IFieldObservable{
 		fos=new ArrayList<>();
 		this.sizeX=x; this.sizeY=y;		
 		this.mines=mines;
+		this.clues = (x*y)-mines;
 		instanciateCellArray(x, y);
 		setMines();
 		setClues();
@@ -23,16 +24,21 @@ public class Field implements IFieldObservable{
 	}
 
 	public AbstractCell getCell(int x, int y) {
-		return field[x][y];
+		return getCell(new Location(x,y));
 	}
 
-	public AbstractCell getCell(Location l) {	
+	private AbstractCell getCell(Location l) {	
 		return field[l.getX()][l.getY()];
 	}
 
+	public void clickCell(int x, int y){
+		clickCell(new Location(x, y));
+	}
 	
-	public void clickCell(Location c) {
+	private void clickCell(Location c) {
 	
+		if (!getCell(c).isMine()) clues--;
+		
 		getCell(c).clickCell();
 		if (getCell(c).getClue()==0) {
 			List <Location> nighbors = getNeighborsOfCell(c);
@@ -47,6 +53,10 @@ public class Field implements IFieldObservable{
 	public void flagCell(int x, int y){
 		field[x][y].toggleCellFlag();
 		updateObservers();
+	}
+
+	public boolean isClear() {
+		return clues==0;
 	}
 
 	/*
@@ -224,4 +234,18 @@ public class Field implements IFieldObservable{
 			fo.update();
 		}
 	}
+	
+	private class Location {
+
+		private int x, y;
+		
+		public Location(int x, int y){
+			this.x=x; this.y = y;
+		}
+		
+		public int getX(){return x;}
+		
+		public int getY(){return y;}
+	}
+
 }
