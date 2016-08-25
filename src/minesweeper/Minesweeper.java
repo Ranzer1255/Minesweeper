@@ -46,14 +46,21 @@ public class Minesweeper implements IMinesweeperModel{
 		if (mineField.getCell(x, y).isMine()) {
 			gameLose();
 		} else {
-			mineField.clickCell(new Location(x,y));
-		} 
+			mineField.clickCell(x,y);
+			if (fieldClear()){
+				gameWin();
+			}
+		}
 	}
 
-	@Override
-	public void flagCell(int x, int y) {
+	private boolean fieldClear() {
+		return mineField.isClear();
+	}
 
-		mineField.flagCell(x, y);
+	private void gameWin() {
+		mineField.revealAll();
+		controler.gameWin();
+		//TODO
 		
 	}
 
@@ -61,6 +68,13 @@ public class Minesweeper implements IMinesweeperModel{
 		
 		mineField.revealAll();
 		controler.gameLose();
+		//TODO
+	}
+
+	@Override
+	public void flagCell(int x, int y) {
+
+		mineField.flagCell(x, y);
 		
 	}
 
