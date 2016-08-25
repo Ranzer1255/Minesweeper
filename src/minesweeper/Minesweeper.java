@@ -1,11 +1,12 @@
 package minesweeper;
 
+import java.util.ArrayList;
 
 /**
  * @author Bobby Dillingham
  *
  */
-public class Minesweeper implements IMinesweeperModel{
+public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 
 	public enum gameState{WIN, LOSE;}
 	public static final int MAXSIZE = 26;
@@ -13,13 +14,13 @@ public class Minesweeper implements IMinesweeperModel{
 	
 	private Field mineField;
 	private IGameController controler;
+	private ArrayList<IFieldObserver> fos;
 	
 	
-	public Minesweeper() {}//TODO
-
-	public Minesweeper(int x, int y, int numMines){
+	public Minesweeper() {
+		mineField = instanciateNewField(10, 10, 10);
+		fos = new ArrayList<>();
 		
-		mineField = new Field(x,y,numMines);
 	}
 	
 	public void setControler(IGameController controler){
@@ -28,7 +29,7 @@ public class Minesweeper implements IMinesweeperModel{
 
 	@Override
 	public void newGame(int x, int y, int numMines) {
-		mineField = new Field(x,y,numMines);
+		instanciateNewField(x,y,numMines);
 		
 		//TODO?
 		
@@ -45,6 +46,12 @@ public class Minesweeper implements IMinesweeperModel{
 				gameWin();
 			}
 		}
+	}
+
+	private Field instanciateNewField(int x, int y, int numMines) {
+		Field rtn = new Field(x, y, numMines);
+		rtn.regFieldObserver(this);
+		return rtn;
 	}
 
 	private boolean fieldIsClear() {
@@ -85,11 +92,18 @@ public class Minesweeper implements IMinesweeperModel{
 
 	@Override
 	public void regFieldObserver(IFieldObserver fo) {
-		mineField.regFieldObserver(fo);
+		fos.add(fo);
 	}
 
 	@Override
 	public void remFieldObserver(IFieldObserver fo) {
-		mineField.remFieldObserver(fo);
+		fos.remove(fo);
+	}
+
+	@Override
+	public void update() {
+		for (IFieldObserver fo : fos) {
+			fo.update();
+		}
 	}
 }

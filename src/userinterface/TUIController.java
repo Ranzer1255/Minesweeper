@@ -81,7 +81,7 @@ public class TUIController implements IGameController{
 		y = ui.getY(Minesweeper.MAXSIZE);
 		mine = ui.getMines(x*y-1);
 		
-		game = new Minesweeper(x, y, mine);
+		game.newGame(x, y, mine);
 		
 	}
 
@@ -131,10 +131,6 @@ public class TUIController implements IGameController{
 
 		displayGrid();		
 	}
-
-
-	@Override
-	public void update(Field f) {}// NO-OP
 
 
 	private void displayGrid() {
