@@ -4,9 +4,9 @@ public interface IGameController {
 	
 	public void newGame();
 	
-	public boolean gameWin();
+	public void gameWin();
 	
-	public boolean gameLose();
+	public void gameLose();
 	
 	
 	

@@ -25,19 +25,19 @@ public class TUIController implements IGameController{
 
 
 	@Override
-	public boolean gameWin() {
-
+	public void gameWin() {
+		//TODO
 		ui.displayWinGameOver();
-		return this.playAgain();
+//		return this.playAgain();
 		
 	}
 
 
 	@Override
-	public boolean gameLose() {
-		
+	public void gameLose() {
+		//TODO
 		ui.displayLoseGameOver();
-		return this.playAgain();
+//		return this.playAgain();
 		
 	}
 
