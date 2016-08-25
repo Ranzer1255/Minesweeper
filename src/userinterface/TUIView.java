@@ -3,9 +3,6 @@ package userinterface;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import minesweeper.Field;
-import minesweeper.Minesweeper;
-
 public class TUIView {
 
 	private TUIHelper ui;

@@ -1,7 +1,5 @@
 package cells;
 
-import cells.AbstractCell.CellState;
-
 public abstract class AbstractCell {
 
 	public enum CellState {HIDDEN, REVEALED, FLAGGED;}
