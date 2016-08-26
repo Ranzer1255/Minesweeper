@@ -230,7 +230,7 @@ public class Field implements IFieldObservable{
 	}
 
 	@Override
-	public void regFieldObserver(IFieldObserver fo) {fos.add(fo);}
+	public void regFieldObserver(IFieldObserver fo) {fos.add(fo); fo.update();}
 
 	@Override
 	public void remFieldObserver(IFieldObserver fo) {fos.remove(fo);}

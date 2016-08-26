@@ -18,7 +18,6 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	
 	
 	public Minesweeper() {
-		mineField = instanciateNewField(10, 10, 10);
 		fos = new ArrayList<>();
 		
 	}
@@ -93,6 +92,7 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	@Override
 	public void regFieldObserver(IFieldObserver fo) {
 		fos.add(fo);
+//		fo.update();
 	}
 
 	@Override
