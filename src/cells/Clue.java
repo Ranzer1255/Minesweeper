@@ -21,7 +21,8 @@ public class Clue extends AbstractCell {
 	@Override
 	public char getSymbol() {
 		
-		return Integer.toString(CLUE).charAt(0);
+		if (this.CLUE==0) return ' ';
+		else return Integer.toString(CLUE).charAt(0);
 	}
 
 	@Override
