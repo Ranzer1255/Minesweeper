@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import cells.*;
+import cells.AbstractCell.CellState;
 
 public class Field implements IFieldObservable{
 
@@ -38,16 +39,17 @@ public class Field implements IFieldObservable{
 	
 	public void clickCell(Location c) {
 	
-		if (!getCell(c).isMine()) clues--;
+		clues--;
 		
 		getCell(c).clickCell();
+		updateObservers();		
 		if (getCell(c).getClue()==0) {
 			List <Location> nighbors = getNeighborsOfCell(c);
 			for (Location n : nighbors) {
-				clickCell(n);
+				if(getCell(n).getState()==CellState.HIDDEN) clickCell(n);
 			}
 		}
-		updateObservers();
+
 		
 	}
 
@@ -230,7 +232,7 @@ public class Field implements IFieldObservable{
 	}
 
 	@Override
-	public void regFieldObserver(IFieldObserver fo) {fos.add(fo); fo.update();}
+	public void regFieldObserver(IFieldObserver fo) {fos.add(fo);}
 
 	@Override
 	public void remFieldObserver(IFieldObserver fo) {fos.remove(fo);}
@@ -238,6 +240,12 @@ public class Field implements IFieldObservable{
 	private void updateObservers(){
 		for (IFieldObserver fo : fos) {
 			fo.update();
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
