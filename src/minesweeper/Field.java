@@ -240,6 +240,10 @@ public class Field implements IFieldObservable{
 	private void updateObservers(){
 		for (IFieldObserver fo : fos) {
 			fo.update();
+			
+			/*
+			 * testing code and unintentional Animation
+			 */
 			try {
 				Thread.sleep(250);
 			} catch (InterruptedException e) {
