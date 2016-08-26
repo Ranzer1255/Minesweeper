@@ -3,7 +3,6 @@ package userinterface;
 import java.io.InputStream;
 import java.io.PrintStream;
 import minesweeper.IMinesweeperModel;
-import minesweeper.Field;
 import minesweeper.IGameController;
 import minesweeper.Minesweeper;
 
@@ -96,6 +95,7 @@ public class TUIController implements IGameController{
 
 	private void startGame() {
 		playing = true;
+		displayGrid();
 		while (playing){
 			parseInput(ui.nextCommand());
 		}
