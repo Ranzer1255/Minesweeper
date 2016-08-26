@@ -28,7 +28,7 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 
 	@Override
 	public void newGame(int x, int y, int numMines) {
-		instanciateNewField(x,y,numMines);
+		mineField = instanciateNewField(x,y,numMines);
 		
 		//TODO?
 		
