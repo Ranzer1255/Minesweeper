@@ -75,7 +75,8 @@ public class Field implements IFieldObservable{
 			for (int j = 0; j < field[i].length; j++) {
 				field[i][j].revealCell();
 			}
-		}	
+		}
+		updateObservers();
 	}
 
 	/*
