@@ -47,17 +47,18 @@ public class Field implements IFieldObservable{
 	 */
 	public boolean clickCell(Location c) {
 	
-		if(getCell(c).isMine()) return true;
+		if		(getCell(c).isFlagged())return false;
+		else if	(getCell(c).isMine())	return true;
 		else{
 			clues--;
-		
+			
 			getCell(c).clickCell();
 		
 			updateObservers();		
 			if (getCell(c).getClue()==0) {
 				List <Location> nighbors = getNeighborsOfCell(c);
 				for (Location n : nighbors) {
-					if(getCell(n).getState()==CellState.HIDDEN) clickCell(n);
+					if(getCell(n).isHidden()) clickCell(n);
 				}
 			}
 			return false;

@@ -4,7 +4,6 @@ public abstract class AbstractCell {
 
 	public enum CellState {HIDDEN, REVEALED, FLAGGED;}
 	private CellState state;
-	
 	public AbstractCell(){
 		state=CellState.HIDDEN;
 		
@@ -57,6 +56,14 @@ public abstract class AbstractCell {
 		
 	}
 	
+	public boolean isHidden() {
+		return state==CellState.HIDDEN;
+	}
+
+	public boolean isFlagged(){
+		return state==CellState.FLAGGED;
+	}
+
 	abstract public boolean isMine();
 
 	abstract public char getSymbol();
