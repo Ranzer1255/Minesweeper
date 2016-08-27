@@ -6,6 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import minesweeper.cells.*;
 import minesweeper.cells.AbstractCell.CellState;
+import minesweeper.interfaces.IFieldObservable;
+import minesweeper.interfaces.IFieldObserver;
 
 public class Field implements IFieldObservable{
 

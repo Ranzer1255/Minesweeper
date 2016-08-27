@@ -2,8 +2,9 @@ package textInterface;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import minesweeper.IMinesweeperModel;
-import minesweeper.IGameController;
+
+import minesweeper.interfaces.IGameController;
+import minesweeper.interfaces.IMinesweeperModel;
 
 public class TUIController implements IGameController{
 	

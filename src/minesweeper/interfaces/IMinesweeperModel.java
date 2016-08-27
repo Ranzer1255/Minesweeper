@@ -1,4 +1,7 @@
-package minesweeper;
+package minesweeper.interfaces;
+
+import minesweeper.Field;
+import minesweeper.Location;
 
 public interface IMinesweeperModel extends IFieldObservable{
 

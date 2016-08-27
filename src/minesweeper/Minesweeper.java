@@ -2,6 +2,10 @@ package minesweeper;
 
 import java.util.ArrayList;
 
+import minesweeper.interfaces.IFieldObserver;
+import minesweeper.interfaces.IGameController;
+import minesweeper.interfaces.IMinesweeperModel;
+
 /**
  * @author Bobby Dillingham
  *

@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.interfaces;
 
 public interface IFieldObserver {
 

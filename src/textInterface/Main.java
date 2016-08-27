@@ -1,8 +1,8 @@
 package textInterface;
 
-import minesweeper.IMinesweeperModel;
-import minesweeper.IGameController;
 import minesweeper.Minesweeper;
+import minesweeper.interfaces.IGameController;
+import minesweeper.interfaces.IMinesweeperModel;
 
 public class Main {
 
