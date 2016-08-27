@@ -83,6 +83,7 @@ public class TUIController implements IGameController{
 		mine = ui.getMines(x*y-1);
 		
 		game.newGame(x, y, mine);
+		displayGrid();
 		
 	}
 
@@ -97,7 +98,6 @@ public class TUIController implements IGameController{
 
 	private void startGame() {
 		playing = true;
-		displayGrid();
 		while (playing){
 			parseInput(ui.nextCommand());
 		}
