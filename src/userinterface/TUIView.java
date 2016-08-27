@@ -60,13 +60,14 @@ public class TUIView {
 	}
 
 	public void displayLoseGameOver() {
-		// TODO Auto-generated method stub
+
+		ui.centerPrint("BOOM! YOU LOSE!");
 		
 	}
 
 	public void displayWinGameOver() {
-		// TODO Auto-generated method stub
-		
+
+		ui.centerPrint("Phew! that was too close, Congrats!");
 	}
 
 	public String nextCommand() {
