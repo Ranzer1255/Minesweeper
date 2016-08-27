@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import minesweeper.IMinesweeperModel;
 import minesweeper.IGameController;
-import minesweeper.Minesweeper;
 
 public class TUIController implements IGameController{
 	
@@ -93,9 +92,6 @@ public class TUIController implements IGameController{
 		try {Thread.sleep(1000);} catch (InterruptedException e) {}
 		System.exit(0);
 	}
-
-
-
 
 	private void startGame() {
 		playing = true;
