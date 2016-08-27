@@ -29,9 +29,6 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	@Override
 	public void newGame(int x, int y, int numMines) {
 		mineField = instanciateNewField(x,y,numMines);
-		
-		//TODO?
-		
 	}
 
 	@Override
@@ -58,7 +55,6 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	private void gameWin() {
 		mineField.revealAll();
 		controler.gameWin();
-		//TODO
 		
 	}
 
@@ -66,7 +62,6 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 		
 		mineField.revealAll();
 		controler.gameLose();
-		//TODO
 	}
 
 	@Override
