@@ -1,4 +1,4 @@
-package cells;
+package minesweeper.cells;
 
 public class Clue extends AbstractCell {
 	

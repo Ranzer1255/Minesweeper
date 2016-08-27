@@ -3,8 +3,9 @@ package minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import cells.*;
-import cells.AbstractCell.CellState;
+
+import minesweeper.cells.*;
+import minesweeper.cells.AbstractCell.CellState;
 
 public class Field implements IFieldObservable{
 

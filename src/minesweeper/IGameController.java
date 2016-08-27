@@ -7,9 +7,4 @@ public interface IGameController extends IFieldObserver {
 	public void gameWin();
 	
 	public void gameLose();
-	
-	
-	
-	
-
 }

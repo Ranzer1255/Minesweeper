@@ -1,4 +1,4 @@
-package cells;
+package minesweeper.cells;
 
 public abstract class AbstractCell {
 
