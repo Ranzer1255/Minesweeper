@@ -8,10 +8,6 @@ import java.util.ArrayList;
  */
 public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 
-	public enum gameState{WIN, LOSE;}
-	public static final int MAXSIZE = 26;
-	
-	
 	private Field mineField;
 	private IGameController controler;
 	private ArrayList<IFieldObserver> fos;
@@ -85,7 +81,6 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	@Override
 	public void regFieldObserver(IFieldObserver fo) {
 		fos.add(fo);
-//		fo.update();
 	}
 
 	@Override

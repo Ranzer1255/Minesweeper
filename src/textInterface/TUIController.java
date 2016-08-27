@@ -8,6 +8,7 @@ import minesweeper.Minesweeper;
 
 public class TUIController implements IGameController{
 	
+	private static final int MAXSIZE = 26;
 	private IMinesweeperModel game;
 	private TUIView ui;
 	private boolean playing;
@@ -78,8 +79,8 @@ public class TUIController implements IGameController{
 	private void getSettings() {
 
 		int x,y,mine;
-		x = ui.getX(Minesweeper.MAXSIZE);
-		y = ui.getY(Minesweeper.MAXSIZE);
+		x = ui.getX(TUIController.MAXSIZE);
+		y = ui.getY(TUIController.MAXSIZE);
 		mine = ui.getMines(x*y-1);
 		
 		game.newGame(x, y, mine);
