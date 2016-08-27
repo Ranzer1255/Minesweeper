@@ -1,4 +1,4 @@
-package userinterface;
+package textInterface;
 
 import minesweeper.IMinesweeperModel;
 import minesweeper.IGameController;

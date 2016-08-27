@@ -1,7 +1,7 @@
 /**
  * 
  */
-package userinterface;
+package textInterface;
 
 import java.io.*;
 import java.util.Scanner;
