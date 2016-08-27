@@ -9,6 +9,8 @@ public interface IMinesweeperModel extends IFieldObservable{
 	public void flagCell(Location c);
 
 	public Field getMinefield();
+	
+	public void setControler(IGameController controler);
 
 	/*
 	 * this might not be needed in the future. its only here for convenance
