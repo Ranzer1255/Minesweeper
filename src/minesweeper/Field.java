@@ -37,19 +37,28 @@ public class Field implements IFieldObservable{
 		clickCell(new Location(x, y));
 	}
 	
-	public void clickCell(Location c) {
+	/**
+	 * 
+	 * @param c Location of the Cell you need to click
+	 * @return True if Cell is a mine
+	 */
+	public boolean clickCell(Location c) {
 	
-		clues--;
+		if(getCell(c).isMine()) return true;
+		else{
+			clues--;
 		
-		getCell(c).clickCell();
-		updateObservers();		
-		if (getCell(c).getClue()==0) {
-			List <Location> nighbors = getNeighborsOfCell(c);
-			for (Location n : nighbors) {
-				if(getCell(n).getState()==CellState.HIDDEN) clickCell(n);
+			getCell(c).clickCell();
+		
+			updateObservers();		
+			if (getCell(c).getClue()==0) {
+				List <Location> nighbors = getNeighborsOfCell(c);
+				for (Location n : nighbors) {
+					if(getCell(n).getState()==CellState.HIDDEN) clickCell(n);
+				}
 			}
+			return false;
 		}
-
 		
 	}
 

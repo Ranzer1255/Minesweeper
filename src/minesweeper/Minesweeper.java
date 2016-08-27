@@ -37,13 +37,11 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	@Override
 	public void clickCell(Location c) {
 
-		if (mineField.getCell(c).isMine()) {
+		if (mineField.clickCell(c)) {
 			gameLose();
-		} else {
-			mineField.clickCell(c);
-			if (fieldIsClear()){
-				gameWin();
-			}
+		}
+		if (fieldIsClear()){
+			gameWin();
 		}
 	}
 
