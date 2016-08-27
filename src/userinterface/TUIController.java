@@ -16,11 +16,13 @@ public class TUIController implements IGameController{
 		this.ui = new TUIView(in, out);
 		this.game = game;
 		this.game.regFieldObserver(this);
+		this.game.setControler(this);
 	}
 
 
 	@Override	
 	public void newGame(){
+		ui.displayWelcome();
 		this.getSettings();
 		this.startGame();
 	}
