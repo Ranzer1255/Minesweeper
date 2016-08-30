@@ -33,6 +33,7 @@ public class TUIController implements IGameController{
 	public void gameWin() {
 		
 		ui.displayWinGameOver();
+		displayGrid();
 		playing = playAgain();
 		if(playing) getSettings();
 		
@@ -42,6 +43,7 @@ public class TUIController implements IGameController{
 	public void gameLose() {
 		
 		ui.displayLoseGameOver();
+		displayGrid();
 		playing = playAgain();
 		if(playing) getSettings();
 		
