@@ -20,5 +20,7 @@ public interface IMinesweeperModel extends IFieldObservable{
 	 * for the text based display
 	 */
 	public StringBuilder printGrid();
+
+	public int getRemainingMines();
 	
 }

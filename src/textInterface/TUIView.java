@@ -116,4 +116,10 @@ public class TUIView {
 		if (rtn<0) throw new NumberFormatException("Please enter a valid letter");;
 		return rtn;
 	}
+
+	public void displayStatus(int remainingMines) {
+
+		ui.centerPrint("Mines remaining: " + remainingMines);
+		
+	}
 }

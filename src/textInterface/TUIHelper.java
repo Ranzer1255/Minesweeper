@@ -96,11 +96,11 @@ public class TUIHelper {
 		do {
 			try {
 				rtn = Integer.parseInt(this.inputPrompt(prompt +" (" + lowBound +"-"+highBound+"): "));
-				if (rtn<lowBound||rtn>highBound) throw new IllegalArgumentException();
+				if (rtn<lowBound||rtn>highBound) throw new IllegalArgumentException("Please enter a number within the valid range");
 				illegalArg = false;
 			} catch (IllegalArgumentException e) {
-				this.centerPrint("I'm sorry I didn't understand, Try again");
-			} 
+				this.centerPrint("I'm sorry i didn't understand, "+e.getMessage());
+			}
 		} while (illegalArg);
 		return rtn;
 	}

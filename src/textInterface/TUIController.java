@@ -99,9 +99,17 @@ public class TUIController implements IGameController{
 		playing = true;
 		while (playing){
 			displayGrid();
+			displayStatus();
 			parseInput(ui.nextCommand());
 		}
 		quitGame();
+	}
+
+
+	private void displayStatus() {
+
+		ui.displayStatus(game.getRemainingMines());
+		
 	}
 
 

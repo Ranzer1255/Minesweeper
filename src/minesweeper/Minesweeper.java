@@ -98,4 +98,9 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 			fo.update();
 		}
 	}
+
+	@Override
+	public int getRemainingMines() {
+		return mineField.getMines()-mineField.getFlags();
+	}
 }

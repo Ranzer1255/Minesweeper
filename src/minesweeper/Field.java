@@ -82,9 +82,9 @@ public class Field implements IFieldObservable{
 
 	@Deprecated
 	public void flagCell(int row, int col){
-		field[row][col].toggleCellFlag();
-		updateObservers();
+		flagCell(new Location(row,col));
 	}
+	
 	public void flagCell(Location c){
 		field[c.getRow()][c.getCol()].toggleCellFlag();
 		updateObservers();
@@ -279,5 +279,25 @@ public class Field implements IFieldObservable{
 		for (IFieldObserver fo : fos) {
 			fo.update();
 		}
+	}
+
+	public int getMines() {
+		return this.mines;
+	}
+
+	/*
+	 *TODO, make this more effecent by tracking flags as they're made instead of counting them
+	 *every time the count is needed.
+	 */
+	public int getFlags() {
+		int rtn = 0;
+		
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field[i].length; j++) {
+				if (getCell(new Location(i, j)).isFlagged()) rtn++;
+			}
+		}
+		
+		return rtn;
 	}
 }
