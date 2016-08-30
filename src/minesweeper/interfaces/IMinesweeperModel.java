@@ -5,7 +5,7 @@ import minesweeper.Location;
 
 public interface IMinesweeperModel extends IFieldObservable{
 
-	public void newGame(int x, int y, int numMines);
+	public void newGame(int row, int col, int numMines);
 	
 	public void clickCell(Location c);
 

@@ -27,8 +27,8 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	}
 
 	@Override
-	public void newGame(int x, int y, int numMines) {
-		mineField = instanciateNewField(x,y,numMines);
+	public void newGame(int row, int col, int numMines) {
+		mineField = instanciateNewField(row,col,numMines);
 	}
 
 	@Override
@@ -42,8 +42,8 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 		}
 	}
 
-	private Field instanciateNewField(int x, int y, int numMines) {
-		Field rtn = new Field(x, y, numMines);
+	private Field instanciateNewField(int row, int col, int numMines) {
+		Field rtn = new Field(row, col, numMines);
 		rtn.regFieldObserver(this);
 		return rtn;
 	}

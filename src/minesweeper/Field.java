@@ -5,39 +5,38 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import minesweeper.cells.*;
-import minesweeper.cells.AbstractCell.CellState;
 import minesweeper.interfaces.IFieldObservable;
 import minesweeper.interfaces.IFieldObserver;
 
 public class Field implements IFieldObservable{
 
 	private AbstractCell[][] field;
-	private int sizeX,sizeY,mines,clues;
+	private int sizeRow,sizeCol,mines,clues;
 	private List<IFieldObserver> fos;
 	
-	public Field(int x, int y, int mines){
+	public Field(int row, int col, int mines){
 		
 		fos=new ArrayList<>();
-		this.sizeX=x; this.sizeY=y;		
+		this.sizeRow=row; this.sizeCol=col;		
 		this.mines=mines;
-		this.clues = (x*y)-mines;
-		instanciateCellArray(x, y);
+		this.clues = (row*col)-mines;
+		instanciateCellArray(row, col);
 		setMines();
 		setClues();
 		
 	}
 
 	@Deprecated
-	public AbstractCell getCell(int x, int y) {
-		return getCell(new Location(x,y));
+	public AbstractCell getCell(int row, int col) {
+		return getCell(new Location(row,col));
 	}
 
 	public AbstractCell getCell(Location c) {	
-		return field[c.getX()][c.getY()];
+		return field[c.getRow()][c.getCol()];
 	}
 	@Deprecated
-	public void clickCell(int x, int y){
-		clickCell(new Location(x, y));
+	public void clickCell(int row, int col){
+		clickCell(new Location(row, col));
 	}
 	
 	/**
@@ -67,12 +66,12 @@ public class Field implements IFieldObservable{
 	}
 
 	@Deprecated
-	public void flagCell(int x, int y){
-		field[x][y].toggleCellFlag();
+	public void flagCell(int row, int col){
+		field[row][col].toggleCellFlag();
 		updateObservers();
 	}
 	public void flagCell(Location c){
-		field[c.getX()][c.getY()].toggleCellFlag();
+		field[c.getRow()][c.getCol()].toggleCellFlag();
 		updateObservers();
 	}
 
@@ -105,7 +104,7 @@ public class Field implements IFieldObservable{
 		
 		rtn.append("* ");
 		rtn.append("| ");
-		for (int i = 0; i < sizeX; i++) {
+		for (int i = 0; i < sizeRow; i++) {
 			rtn.append((char)('a'+i));
 			rtn.append(" ");
 		}
@@ -117,7 +116,7 @@ public class Field implements IFieldObservable{
 		//top border
 		rtn.append("- ");
 		rtn.append("- ");
-		for (int i = 0; i < sizeX; i++) {
+		for (int i = 0; i < sizeRow; i++) {
 			rtn.append("- ");
 		}
 		rtn.append("| " );
@@ -138,7 +137,7 @@ public class Field implements IFieldObservable{
 		
 		//bottom border
 		rtn.append("* | ");
-		for (int i = 0; i < sizeX; i++) {
+		for (int i = 0; i < sizeRow; i++) {
 			rtn.append("- ");
 		}
 		rtn.append("| *\n");
@@ -146,10 +145,10 @@ public class Field implements IFieldObservable{
 		return rtn;
 	}
 
-	private void instanciateCellArray(int x, int y) {
-		field=new AbstractCell[x][y];
-		for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
+	private void instanciateCellArray(int row, int col) {
+		field=new AbstractCell[row][col];
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
 				field[i][j] = new Clue();
 			}
 		}
@@ -158,17 +157,17 @@ public class Field implements IFieldObservable{
 	private void setMines() {
 		for (int i = 0; i < this.mines; i++) {
 			//get random cell
-			int randX, randY;
+			int randRow, randCol;
 			do {
-				randX = randomInt(sizeX); randY = randomInt(sizeY);
-			}while(getCell(randX, randY).isMine());
-			field[randX][randY] = new Mine();
+				randRow = randomInt(sizeRow); randCol = randomInt(sizeCol);
+			}while(getCell(randRow, randCol).isMine());
+			field[randRow][randCol] = new Mine();
 		}
 	}
 
 	private void setClues() {
-		for (int i = 0; i < sizeX; i++) {
-			for (int j = 0; j < sizeY; j++) {
+		for (int i = 0; i < sizeRow; i++) {
+			for (int j = 0; j < sizeCol; j++) {
 				
 				if(!getCell(i,j).isMine()){
 					List<Location> neighbors = getNeighborsOfCell(new Location(i,j));
@@ -190,57 +189,57 @@ public class Field implements IFieldObservable{
 
 	private List<Location> getNeighborsOfCell(Location origin) {
 		List<Location> rtn = new ArrayList<Location>();
-		int x = origin.getX(); int y = origin.getY();
+		int row = origin.getRow(); int col = origin.getCol();
 		
-		if((x==0&&y==0)){ 				//Northwest corner
-			rtn.add(new Location(x  , y+1));
-			rtn.add(new Location(x+1, y  ));
-			rtn.add(new Location(x+1, y+1));
-		} else if (x==0&&y==sizeY-1){		//Northeast corner
-			rtn.add(new Location(x  , y-1));
-			rtn.add(new Location(x+1, y  ));
-			rtn.add(new Location(x+1, y-1));
-		} else if (x==sizeX-1&&y==0){		//Southwest corner
-			rtn.add(new Location(x  , y+1));
-			rtn.add(new Location(x-1, y  ));
-			rtn.add(new Location(x-1, y+1));
-		} else if (x==sizeX-1&&y==sizeY-1){	//Southeast corner
-			rtn.add(new Location(x  , y-1));
-			rtn.add(new Location(x-1, y  ));
-			rtn.add(new Location(x-1, y-1));
-		} else if (x==0){				//North edge
-			rtn.add(new Location(x  , y-1));
-			rtn.add(new Location(x  , y+1));
-			rtn.add(new Location(x+1, y  ));
-			rtn.add(new Location(x+1, y-1));
-			rtn.add(new Location(x+1, y+1));
-		} else if (x==sizeX-1){			//South edge
-			rtn.add(new Location(x  , y-1));
-			rtn.add(new Location(x  , y+1));
-			rtn.add(new Location(x-1, y  ));
-			rtn.add(new Location(x-1, y-1));
-			rtn.add(new Location(x-1, y+1));
-		} else if (y==0) {				//West edge
-			rtn.add(new Location(x-1, y  ));
-			rtn.add(new Location(x-1, y+1));
-			rtn.add(new Location(x  , y+1));
-			rtn.add(new Location(x+1, y  ));
-			rtn.add(new Location(x+1, y+1));
-		} else if (y==sizeY-1){			//East edge
-			rtn.add(new Location(x-1, y  ));
-			rtn.add(new Location(x-1, y-1));
-			rtn.add(new Location(x  , y-1));
-			rtn.add(new Location(x+1, y  ));
-			rtn.add(new Location(x+1, y-1));
+		if((row==0&&col==0)){ 				//Northwest corner
+			rtn.add(new Location(row  , col+1));
+			rtn.add(new Location(row+1, col  ));
+			rtn.add(new Location(row+1, col+1));
+		} else if (row==0&&col==sizeCol-1){		//Northeast corner
+			rtn.add(new Location(row  , col-1));
+			rtn.add(new Location(row+1, col  ));
+			rtn.add(new Location(row+1, col-1));
+		} else if (row==sizeRow-1&&col==0){		//Southwest corner
+			rtn.add(new Location(row  , col+1));
+			rtn.add(new Location(row-1, col  ));
+			rtn.add(new Location(row-1, col+1));
+		} else if (row==sizeRow-1&&col==sizeCol-1){	//Southeast corner
+			rtn.add(new Location(row  , col-1));
+			rtn.add(new Location(row-1, col  ));
+			rtn.add(new Location(row-1, col-1));
+		} else if (row==0){				//North edge
+			rtn.add(new Location(row  , col-1));
+			rtn.add(new Location(row  , col+1));
+			rtn.add(new Location(row+1, col  ));
+			rtn.add(new Location(row+1, col-1));
+			rtn.add(new Location(row+1, col+1));
+		} else if (row==sizeRow-1){			//South edge
+			rtn.add(new Location(row  , col-1));
+			rtn.add(new Location(row  , col+1));
+			rtn.add(new Location(row-1, col  ));
+			rtn.add(new Location(row-1, col-1));
+			rtn.add(new Location(row-1, col+1));
+		} else if (col==0) {				//West edge
+			rtn.add(new Location(row-1, col  ));
+			rtn.add(new Location(row-1, col+1));
+			rtn.add(new Location(row  , col+1));
+			rtn.add(new Location(row+1, col  ));
+			rtn.add(new Location(row+1, col+1));
+		} else if (col==sizeCol-1){			//East edge
+			rtn.add(new Location(row-1, col  ));
+			rtn.add(new Location(row-1, col-1));
+			rtn.add(new Location(row  , col-1));
+			rtn.add(new Location(row+1, col  ));
+			rtn.add(new Location(row+1, col-1));
 		} else {						//middle
-			rtn.add(new Location(x-1, y  ));
-			rtn.add(new Location(x-1, y-1));
-			rtn.add(new Location(x-1, y+1));
-			rtn.add(new Location(x  , y-1));
-			rtn.add(new Location(x  , y+1));
-			rtn.add(new Location(x+1, y  ));
-			rtn.add(new Location(x+1, y-1));
-			rtn.add(new Location(x+1, y+1));
+			rtn.add(new Location(row-1, col  ));
+			rtn.add(new Location(row-1, col-1));
+			rtn.add(new Location(row-1, col+1));
+			rtn.add(new Location(row  , col-1));
+			rtn.add(new Location(row  , col+1));
+			rtn.add(new Location(row+1, col  ));
+			rtn.add(new Location(row+1, col-1));
+			rtn.add(new Location(row+1, col+1));
 		}
 		return rtn;
 	}
@@ -254,16 +253,6 @@ public class Field implements IFieldObservable{
 	private void updateObservers(){
 		for (IFieldObserver fo : fos) {
 			fo.update();
-			
-			/*
-			 * testing code and unintentional Animation
-			 */
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 }

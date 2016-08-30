@@ -79,8 +79,8 @@ public class TUIController implements IGameController{
 	private void getSettings() {
 
 		int x,y,mine;
-		x = ui.getX(TUIController.MAXSIZE);
-		y = ui.getY(TUIController.MAXSIZE);
+		x = ui.getRow(TUIController.MAXSIZE);
+		y = ui.getCol(TUIController.MAXSIZE);
 		mine = ui.getMines(x*y-1);
 		
 		game.newGame(x, y, mine);
@@ -97,6 +97,7 @@ public class TUIController implements IGameController{
 	private void startGame() {
 		playing = true;
 		while (playing){
+			displayGrid();
 			parseInput(ui.nextCommand());
 		}
 		quitGame();
@@ -128,8 +129,8 @@ public class TUIController implements IGameController{
 
 	@Override
 	public void update() {
-
-		displayGrid();		
+		//no-op
+//		displayGrid();		
 	}
 
 
