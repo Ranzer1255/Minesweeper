@@ -42,11 +42,11 @@ public class TUIView {
 
 	public int getRow(int maxsize) {
 		// TODO Auto-generated method stub
-		return ui.nextBountedInt("How tall?", 1,maxsize);
+		return ui.nextBountedInt("How tall?", 2,maxsize);
 	}
 	
 	public int getCol(int maxsize){
-		return ui.nextBountedInt("How wide?", 1,maxsize);
+		return ui.nextBountedInt("How wide?", 2,maxsize);
 	}
 	
 	public int getMines(int maxsize){
