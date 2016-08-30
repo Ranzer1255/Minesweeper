@@ -49,37 +49,26 @@ public class TUIController implements IGameController{
 		
 	}
 
-	private boolean playAgain() {
-		boolean rtn = false;
-		boolean invalidArg;
-		do {
-			invalidArg = false;
-			String in = ui.playAgain();
-			try{
-				if (in.toLowerCase().charAt(0)== 'y'){
-					rtn = true;
-				} else if (in.toLowerCase().charAt(0) == 'n'){
-					rtn = false;
-				} else {
-					invalidArg=true;
-					throw new IllegalArgumentException("Please answer Yes or No");
-				}
-			}catch (IllegalArgumentException e){
-				ui.badInput(e.getMessage());
-			}
-			
-		} while (invalidArg);
-		
-		return rtn;
+	@Override
+		public void update() {
+			//no-op
+	//		displayGrid();		
+		}
+
+
+	public void quitGame() {
+		ui.displayGoodbye();
+		try {Thread.sleep(1000);} catch (InterruptedException e) {}
+		System.exit(0);
 	}
 
 
 	/**
 	 * @param args
 	 */
-
+	
 	private void getSettings() {
-
+	
 		int x,y,mine;
 		x = ui.getRow(TUIController.MAXSIZE);
 		y = ui.getCol(TUIController.MAXSIZE);
@@ -89,11 +78,6 @@ public class TUIController implements IGameController{
 		
 	}
 
-	public void quitGame() {
-		ui.displayGoodbye();
-		try {Thread.sleep(1000);} catch (InterruptedException e) {}
-		System.exit(0);
-	}
 
 	private void startGame() {
 		playing = true;
@@ -106,8 +90,14 @@ public class TUIController implements IGameController{
 	}
 
 
-	private void displayStatus() {
+	private void displayGrid() {
+	
+		ui.print(game.printGrid());
+	}
 
+
+	private void displayStatus() {
+	
 		ui.displayStatus(game.getRemainingMines());
 		
 	}
@@ -136,15 +126,27 @@ public class TUIController implements IGameController{
 	}
 
 
-	@Override
-	public void update() {
-		//no-op
-//		displayGrid();		
-	}
-
-
-	private void displayGrid() {
-	
-		ui.print(game.printGrid());
+	private boolean playAgain() {
+		boolean rtn = false;
+		boolean invalidArg;
+		do {
+			invalidArg = false;
+			String in = ui.playAgain();
+			try{
+				if (in.toLowerCase().charAt(0)== 'y'){
+					rtn = true;
+				} else if (in.toLowerCase().charAt(0) == 'n'){
+					rtn = false;
+				} else {
+					invalidArg=true;
+					throw new IllegalArgumentException("Please answer Yes or No");
+				}
+			}catch (IllegalArgumentException e){
+				ui.badInput(e.getMessage());
+			}
+			
+		} while (invalidArg);
+		
+		return rtn;
 	}
 }
