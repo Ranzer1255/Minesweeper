@@ -64,6 +64,10 @@ public abstract class AbstractCell {
 		return state==CellState.FLAGGED;
 	}
 
+	public boolean isRevealed() {
+		return state==CellState.REVEALED;
+	}
+
 	abstract public boolean isMine();
 
 	abstract public char getSymbol();

@@ -46,8 +46,23 @@ public class Field implements IFieldObservable{
 	 */
 	public boolean clickCell(Location c) {
 	
-		if		(getCell(c).isFlagged())return false;
-		else if	(getCell(c).isMine())	return true;
+		if		(getCell(c).isMine())	return true;
+		else if	(getCell(c).isFlagged())return false;
+		else if (getCell(c).isRevealed()){
+			List<Location> n=getNeighborsOfCell(c);
+			int countFlags=0;
+			for (Location location : n) {
+				if(getCell(location).isFlagged()) countFlags++;
+			}
+			if(countFlags==getCell(c).getClue()&&getCell(c).getClue()!=0){
+				for (Location location : n) {
+					if (getCell(location).isHidden()) {
+						if (clickCell(location))return true;
+					}
+				}
+			}
+			return false;
+		}
 		else{
 			clues--;
 			
