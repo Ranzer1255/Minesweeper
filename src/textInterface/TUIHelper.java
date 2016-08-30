@@ -96,6 +96,7 @@ public class TUIHelper {
 		do {
 			try {
 				rtn = Integer.parseInt(this.inputPrompt(prompt +" (" + lowBound +"-"+highBound+"): "));
+				if (rtn<lowBound||rtn>highBound) throw new IllegalArgumentException();
 				illegalArg = false;
 			} catch (IllegalArgumentException e) {
 				this.centerPrint("I'm sorry I didn't understand, Try again");
