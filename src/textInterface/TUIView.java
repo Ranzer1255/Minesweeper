@@ -87,23 +87,23 @@ public class TUIView {
 	}
 
 	public Location getLoc() {
-		return new Location(getX(), getY());
+		return new Location(getRow(), getCol());
 	}
 
-	private int getY() {
+	private int getCol() {
 		int rtn = 0;
 		
-		String in = ui.inputPrompt("Row: ");
+		String in = ui.inputPrompt("Col: ");
 		rtn = parseInput(in);
 		
 		return rtn;
 		
 	}
 
-	private int getX() {
+	private int getRow() {
 	int rtn = 0;
 		
-		String in = ui.inputPrompt("Col: ");
+		String in = ui.inputPrompt("Row: ");
 		
 		rtn = parseInput(in);
 		

@@ -84,7 +84,6 @@ public class TUIController implements IGameController{
 		mine = ui.getMines(x*y-1);
 		
 		game.newGame(x, y, mine);
-		displayGrid();
 		
 	}
 

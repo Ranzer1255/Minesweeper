@@ -104,7 +104,7 @@ public class Field implements IFieldObservable{
 		
 		rtn.append("* ");
 		rtn.append("| ");
-		for (int i = 0; i < sizeRow; i++) {
+		for (int i = 0; i < sizeCol; i++) {
 			rtn.append((char)('a'+i));
 			rtn.append(" ");
 		}
@@ -116,7 +116,7 @@ public class Field implements IFieldObservable{
 		//top border
 		rtn.append("- ");
 		rtn.append("- ");
-		for (int i = 0; i < sizeRow; i++) {
+		for (int i = 0; i < sizeCol; i++) {
 			rtn.append("- ");
 		}
 		rtn.append("| " );
@@ -136,11 +136,21 @@ public class Field implements IFieldObservable{
 		}
 		
 		//bottom border
-		rtn.append("* | ");
-		for (int i = 0; i < sizeRow; i++) {
+		rtn.append("- | ");
+		for (int i = 0; i < sizeCol; i++) {
 			rtn.append("- ");
 		}
-		rtn.append("| *\n");
+		rtn.append("| -\n");
+		
+		rtn.append("* ");
+		rtn.append("| ");
+		for (int i = 0; i < sizeCol; i++) {
+			rtn.append((char)('a'+i));
+			rtn.append(" ");
+		}
+		rtn.append("| ");
+		rtn.append("*");
+		rtn.append('\n');
 		
 		return rtn;
 	}
