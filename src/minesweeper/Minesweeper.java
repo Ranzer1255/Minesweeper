@@ -36,9 +36,10 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 
 		if (mineField.clickCell(c)) {
 			gameLose();
-		}
-		if (fieldIsClear()){
+		}else if (fieldIsClear()){
 			gameWin();
+		} else {
+			update();
 		}
 	}
 

@@ -68,7 +68,6 @@ public class Field implements IFieldObservable{
 			
 			getCell(c).clickCell();
 		
-			updateObservers();		
 			if (getCell(c).getClue()==0) {
 				List <Location> nighbors = getNeighborsOfCell(c);
 				for (Location n : nighbors) {
