@@ -2,10 +2,14 @@ package minesweeper.interfaces;
 
 import minesweeper.Field;
 import minesweeper.Location;
+import minesweeper.Minesweeper.GameSettings;
 
 public interface IMinesweeperModel extends IFieldObservable{
 
+	@Deprecated
 	public void newGame(int row, int col, int numMines);
+	
+	public void newGame(GameSettings settings);
 	
 	public void clickCell(Location c);
 

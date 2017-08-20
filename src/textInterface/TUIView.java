@@ -41,7 +41,6 @@ public class TUIView {
 	}
 
 	public int getRow(int maxsize) {
-		// TODO Auto-generated method stub
 		return ui.nextBountedInt("How tall?", 2,maxsize);
 	}
 	

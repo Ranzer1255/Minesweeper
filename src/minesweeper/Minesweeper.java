@@ -27,8 +27,12 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	}
 
 	@Override
+	@Deprecated
 	public void newGame(int row, int col, int numMines) {
 		mineField = instanciateNewField(row,col,numMines);
+	}
+	public void newGame(GameSettings settings){
+		mineField = instanciateNewField(settings.ROW, settings.COL, settings.MINES);
 	}
 
 	@Override
@@ -103,5 +107,14 @@ public class Minesweeper implements IMinesweeperModel,IFieldObserver{
 	@Override
 	public int getRemainingMines() {
 		return mineField.getMines()-mineField.getFlags();
+	}
+	
+	public class GameSettings{
+		public final int ROW, COL, MINES;
+		public GameSettings(int row, int col, int mines) {
+			ROW = row;
+			COL=col;
+			MINES = mines;
+		}
 	}
 }
